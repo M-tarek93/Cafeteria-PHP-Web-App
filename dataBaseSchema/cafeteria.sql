@@ -56,13 +56,17 @@ CREATE TABLE `orders_items` (
 --
 
 CREATE TABLE `products` (
-  `id` int(11) NOT NULL,
+  `productname` varchar(50) NOT NULL,
   `price` int(11) NOT NULL,
+  `category` varchar(50) NOT NULL,
   `image` varchar(255) NOT NULL,
-  `category` varchar(50) NOT NULL
+  `id` int(11) NOT NULL,
+  `IsAvailable` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
+INSERT INTO `products` (`productname`, `price`, `category`, `image`, `id`, `IsAvailable`) VALUES
+('Ahmed', 5, 'nescafe', 'Screenshot from 2020-02-16 20-47-20.png', 1, 0);
 
 --
 -- Table structure for table `users`

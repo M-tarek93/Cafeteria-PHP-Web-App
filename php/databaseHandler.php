@@ -74,5 +74,77 @@
             }
         }
 
+        public function insertProduct($productname,$price, $category, $image,$IsAvailable)
+        {
+    
+            $this->connectDB();
+    
+            // prepare sql and bind parameters
+            $stmt = $this->conn->prepare("INSERT INTO products ( productname,price , category ,image, IsAvailable
+                )
+                VALUES (:productname,:price,:category,:image,:IsAvailable)");
+            $stmt->bindParam(':productname', $productname);
+            $stmt->bindParam(':price', $price);
+            $stmt->bindParam(':category', $category);
+            $stmt->bindParam(':image', $image);
+            $stmt->bindParam(':IsAvailable', $IsAvailable);
+    
+            $stmt->execute();
+            $this->disconnectDB();
+    
+        }
+        public function insertCategory($productname,$price, $category, $image,$IsAvailable)
+        {
+    
+            $this->connectDB();
+    
+            // prepare sql and bind parameters
+            $stmt = $this->conn->prepare("INSERT INTO products ( productname,price , category ,image, IsAvailable
+            )
+            VALUES (:productname,:price,:category,:image,:IsAvailable)");
+        $stmt->bindParam(':productname', $productname);
+        $stmt->bindParam(':price', $price);
+        $stmt->bindParam(':category', $category);
+        $stmt->bindParam(':image', $image);
+        $stmt->bindParam(':IsAvailable', $IsAvailable);
+    
+        $stmt->execute();
+        $this->disconnectDB();
+            
+    
+    
+        }
+    
+        function selectAll (){ 
+           
+             $this->connectDB();
+            $stmt= $this->conn->prepare("SELECT * FROM products;");
+            $stmt->execute();
+            $allProducts = $stmt->fetchAll();
+            return $allProducts;
+           
+    // $this->disconnectDB();
+        }
+    
+        public function updateProduct($productname, $price, $category, $image, $IsAvailable=1,$id) {
+            $sql = 'update products set productname = ?, price = ?, category = ?, image = ?, IsAvailable = ? where id = ?';
+            try{
+                $stmt = $this->conn->prepare($sql);
+                $stmt->bindValue(1, $productname);
+                $stmt->bindValue(2, $price);
+                $stmt->bindValue(3, $category);
+                $stmt->bindValue(4, $image);
+                $stmt->bindValue(5, $IsAvailable);
+                $stmt->bindValue(6, $id);
+    
+    
+                $stmt->execute();
+            }catch(PDOException $e){
+                echo $e->getMessage();
+            }
+        }
+     
+        
+
     }
 
