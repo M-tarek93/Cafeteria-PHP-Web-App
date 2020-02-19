@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <head>
 	<meta charset="UTF-8">
-	<title>Cafeteria</title>
+    <title>Cafeteria</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 	<link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" type="image/x-icon" href="../../images/favicon.ico" />
 </head>
 <body >
 	<div class="container justify-content-center">
@@ -19,19 +20,19 @@
 				<li class="form-group" >
 					<label >Email </label>
 					<div>
-						<input name="email" class="form-control " type="text" maxlength="255" value="<?php echo $_GET['email'];?>"/>
+						<input name="email" class="form-control " type="email" maxlength="255" value="<?php echo $_GET['email'];?>" required/>
 					</div> 
 				</li>
 				<li class="form-group">
 					<label>Room No. </label>
 					<div>
-						<input name="room" class="form-control" type="text" maxlength="255" value="<?php echo $_GET['room'];?>"/>
+						<input name="room" class="form-control" type="text" maxlength="255" value="<?php echo $_GET['room'];?>" required/>
 					</div> 
 				</li>
 				<li class="form-group">
 					<label>Ext </label>
 					<div>
-						<input name="ext" class="form-control" type="text" maxlength="255" value="<?php echo $_GET['ext'];?>"/> 
+						<input name="ext" class="form-control" type="text" maxlength="255" value="<?php echo $_GET['ext'];?>" required/> 
 					</div> 
 				</li>
 				<li class="form-group">
