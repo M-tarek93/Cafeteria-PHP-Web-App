@@ -1,0 +1,13 @@
+table{
+    max-width:75%;
+    margin:auto;
+    margin-top: 3rem;
+}
+
+li{
+    display: inline-block !important;
+}
+
+input{
+    width: 300px;
+}

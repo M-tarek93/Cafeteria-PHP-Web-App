@@ -15,22 +15,52 @@
             PDO::ATTR_EMULATE_PREPARES   => false,
         ];
 
-        private function connectDB(){
+        public function __construct(){
+            $this->connectDB();
+        }
+        public function connectDB(){
             try {
                 $this->conn = new PDO(self::dsn, self::user, self::pass, self::options);
             } catch (\PDOException $e) {
                 throw new \PDOException($e->getMessage(), (int)$e->getCode());
             }
         }
-        private function disconnectDB(){
+        public function disconnectDB(){
             $this->conn = null;
         }
-        public function insertUser($usernaem, $password, $email, $room, $ext, $profilePic, $role=0) : int {
-            $this->connectDB();
+        public function getUsers(){
+            $stmt=$this->conn->prepare('select * from users');
+            $stmt->execute();
+            return $stmt->fetchAll();
+        }
+        
+        public function deleteUser($username){
+            $stmt=$this->conn->prepare('delete from users where username = ?');
+            $stmt->bindValue( 1, $username );
+            $stmt->execute();
+            return $stmt->rowCount();
+        }
+
+        public function updateUser($username, $email, $room, $ext, $profilePic, $role=0) {
+            $sql = 'update users set email = ?, room = ?, ext = ?, role = ?, profile_pic = ? where username = ?';
+            try{
+                $stmt = $this->conn->prepare($sql);
+                $stmt->bindValue(1, $email);
+                $stmt->bindValue(2, $room);
+                $stmt->bindValue(3, $ext);
+                $stmt->bindValue(4, $role);
+                $stmt->bindValue(5, $profilePic);
+                $stmt->bindValue(6, $username);
+                $stmt->execute();
+            }catch(PDOException $e){
+                echo $e->getMessage();
+            }
+        }
+        public function insertUser($username, $password, $email, $room, $ext, $profilePic, $role=0) : int {
             $sql = "INSERT INTO users( username, password, email, room, ext, profile_pic, role) values(?,?,?,?,?,?,?);";
             try{
                 $stmt = $this->conn->prepare($sql);
-                $stmt->bindValue( 1, $usernaem );
+                $stmt->bindValue( 1, $username );
                 $stmt->bindValue( 2, $password );
                 $stmt->bindValue( 3, $email );
                 $stmt->bindValue( 4, $room );
