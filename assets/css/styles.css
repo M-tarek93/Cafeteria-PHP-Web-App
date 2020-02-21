@@ -1,0 +1,30 @@
+.main-padding {
+    padding: 40px 0;
+}
+
+.main-padding:first-of-type {
+    margin-top: 66px;
+}
+
+.main-padding>div.container>h1 {
+    margin-bottom: 40px;
+}
+
+.h-100 {
+    height: 100%;
+}
+
+.hidden {
+    display: none;
+}
+
+.add-product [class*="col-"],
+{
+    -ms-flex-item-align: baseline;
+    align-self: baseline;
+}
+
+.modal .modal-body [class*="col-"] {
+    -ms-flex-item-align: end;
+    align-self: flex-end;
+}

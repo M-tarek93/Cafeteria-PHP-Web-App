@@ -1,13 +1,15 @@
 -- phpMyAdmin SQL Dump
--- version 4.4.15.10
--- https://www.phpmyadmin.net
+-- version 5.0.1
+-- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Feb 21, 2020 at 09:38 AM
--- Server version: 5.5.64-MariaDB
--- PHP Version: 7.2.28
+-- Generation Time: Feb 21, 2020 at 05:04 PM
+-- Server version: 10.4.11-MariaDB
+-- PHP Version: 7.4.2
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -23,26 +25,46 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `category`
+--
+
+CREATE TABLE `category` (
+  `id` int(11) NOT NULL,
+  `name` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `category`
+--
+
+INSERT INTO `category` (`id`, `name`) VALUES
+(1, 'Hot drinks'),
+(2, 'Cold drinks'),
+(3, 'Snacks');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `orders`
 --
 
-CREATE TABLE IF NOT EXISTS `orders` (
-  `order_id` int(11) NOT NULL,
-  `date` datetime NOT NULL,
+CREATE TABLE `orders` (
+  `id` int(11) NOT NULL,
+  `date` date NOT NULL,
   `room` int(11) NOT NULL,
   `ext` int(11) NOT NULL,
   `total_price` int(11) NOT NULL,
-  `status` varchar(50) NOT NULL,
+  `status` int(11) NOT NULL,
   `username` varchar(50) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `orders`
 --
 
-INSERT INTO `orders` (`order_id`, `date`, `room`, `ext`, `total_price`, `status`, `username`) VALUES
-(1, '2020-02-02 00:00:00', 33, 33, 19, 'done', 'Dawn'),
-(20, '2020-02-06 09:13:00', 44, 54, 7, 'processing', 'Dawn');
+INSERT INTO `orders` (`id`, `date`, `room`, `ext`, `total_price`, `status`, `username`) VALUES
+(21, '2020-02-21', 210, 3150, 10, 1, 'Declan'),
+(22, '2020-02-21', 220, 3120, 35, 2, 'Breanna');
 
 -- --------------------------------------------------------
 
@@ -50,7 +72,7 @@ INSERT INTO `orders` (`order_id`, `date`, `room`, `ext`, `total_price`, `status`
 -- Table structure for table `orders_items`
 --
 
-CREATE TABLE IF NOT EXISTS `orders_items` (
+CREATE TABLE `orders_items` (
   `order_id` int(11) NOT NULL,
   `product_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -60,10 +82,10 @@ CREATE TABLE IF NOT EXISTS `orders_items` (
 --
 
 INSERT INTO `orders_items` (`order_id`, `product_id`) VALUES
-(1, 1),
-(1, 2),
-(1, 2),
-(20, 2);
+(21, 1),
+(21, 2),
+(22, 6),
+(22, 5);
 
 -- --------------------------------------------------------
 
@@ -71,22 +93,46 @@ INSERT INTO `orders_items` (`order_id`, `product_id`) VALUES
 -- Table structure for table `products`
 --
 
-CREATE TABLE IF NOT EXISTS `products` (
-  `productname` varchar(50) NOT NULL,
-  `price` int(11) NOT NULL,
-  `category` varchar(50) NOT NULL,
-  `image` varchar(255) NOT NULL,
+CREATE TABLE `products` (
   `id` int(11) NOT NULL,
-  `IsAvailable` tinyint(1) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+  `name` varchar(50) NOT NULL,
+  `price` int(11) NOT NULL,
+  `image` varchar(50) NOT NULL,
+  `category` int(11) NOT NULL,
+  `isAvailable` tinyint(1) NOT NULL DEFAULT 1
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `products`
 --
 
-INSERT INTO `products` (`productname`, `price`, `category`, `image`, `id`, `IsAvailable`) VALUES
-('Tea', 5, 'Hot Drinks', 'tea.png', 1, 1),
-('coffee', 7, 'Hot Drinks', 'coffee.png', 2, 1);
+INSERT INTO `products` (`id`, `name`, `price`, `image`, `category`, `isAvailable`) VALUES
+(1, 'Tea', 5, 'tea.png', 1, 1),
+(2, 'Mint', 5, 'mint.png', 1, 1),
+(3, 'Pepsi', 10, 'pepsi.png', 2, 1),
+(4, 'Coca Cola', 10, 'coca.png', 2, 1),
+(5, 'Milk Shake', 20, 'milkshake.png', 2, 1),
+(6, 'Cappuccino', 15, 'cappuccino.png', 1, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `status`
+--
+
+CREATE TABLE `status` (
+  `id` int(11) NOT NULL,
+  `name` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `status`
+--
+
+INSERT INTO `status` (`id`, `name`) VALUES
+(1, 'Processing'),
+(2, 'Out for Delivery'),
+(3, 'Done');
 
 -- --------------------------------------------------------
 
@@ -94,14 +140,14 @@ INSERT INTO `products` (`productname`, `price`, `category`, `image`, `id`, `IsAv
 -- Table structure for table `users`
 --
 
-CREATE TABLE IF NOT EXISTS `users` (
+CREATE TABLE `users` (
   `username` varchar(50) NOT NULL,
   `password` varchar(50) NOT NULL,
   `email` varchar(150) NOT NULL,
   `room` int(11) NOT NULL,
   `ext` int(11) NOT NULL,
   `profile_pic` varchar(255) NOT NULL,
-  `role` int(11) NOT NULL DEFAULT '0'
+  `role` int(11) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -109,13 +155,8 @@ CREATE TABLE IF NOT EXISTS `users` (
 --
 
 INSERT INTO `users` (`username`, `password`, `email`, `room`, `ext`, `profile_pic`, `role`) VALUES
-('Baxter', '123456', 'sed@nequepellentesquemassa.edu', 3448, 158, '3.jpg', 0),
-('Benjamin', '123456', 'Nullam.scelerisque.neque@quisdiam.net', 2779, 573, '4.jpg', 0),
-('Branden', '123456', 'nec@gravida.org', 3378, 439, '4.jpg', 0),
-('Breanna', '123', 'non@molestie.com', 5822, 967, '7.jpg', 0),
+('Breanna', '123', 'non@molestie.com', 5822, 967, '1228031.jpg', 0),
 ('Brock', '123', 'magna@Donecluctusaliquet.edu', 3532, 129, '4.jpg', 0),
-('Brocka', '123', 'arcu.et.pede@Nunclaoreetlectus.ca', 4674, 643, '8.jpg', 0),
-('Cade', '123', 'vel.turpis@Cumsociis.com', 4340, 768, '1.jpg', 0),
 ('Cedric', '123456', 'tortor.Nunc.commodo@vitae.ca', 3317, 897, '4.jpg', 0),
 ('Cyrus', '123456', 'Nulla.tempor.augue@liberoMorbi.co.uk', 3556, 377, '5.jpg', 0),
 ('Danielle', '123456', 'Sed.neque@acmattissemper.net', 5916, 751, '3.jpg', 0),
@@ -172,11 +213,18 @@ INSERT INTO `users` (`username`, `password`, `email`, `room`, `ext`, `profile_pi
 --
 
 --
+-- Indexes for table `category`
+--
+ALTER TABLE `category`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `orders`
 --
 ALTER TABLE `orders`
-  ADD PRIMARY KEY (`order_id`),
-  ADD KEY `orderForiegnKey` (`username`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `orderForiegnKey` (`username`),
+  ADD KEY `statusCodes` (`status`);
 
 --
 -- Indexes for table `orders_items`
@@ -189,6 +237,13 @@ ALTER TABLE `orders_items`
 -- Indexes for table `products`
 --
 ALTER TABLE `products`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `categories` (`category`);
+
+--
+-- Indexes for table `status`
+--
+ALTER TABLE `status`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -202,15 +257,29 @@ ALTER TABLE `users`
 --
 
 --
+-- AUTO_INCREMENT for table `category`
+--
+ALTER TABLE `category`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=21;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+
 --
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT for table `status`
+--
+ALTER TABLE `status`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
 --
 -- Constraints for dumped tables
 --
@@ -219,14 +288,22 @@ ALTER TABLE `products`
 -- Constraints for table `orders`
 --
 ALTER TABLE `orders`
-  ADD CONSTRAINT `orderForiegnKey` FOREIGN KEY (`username`) REFERENCES `users` (`username`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `statusCodes` FOREIGN KEY (`status`) REFERENCES `status` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `users` FOREIGN KEY (`username`) REFERENCES `users` (`username`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `orders_items`
 --
 ALTER TABLE `orders_items`
-  ADD CONSTRAINT `orderItemsForiegnKeyOrders` FOREIGN KEY (`order_id`) REFERENCES `orders` (`order_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `orderItemsForiegnKeyOrders` FOREIGN KEY (`order_id`) REFERENCES `orders` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `orderItemsForiegnKeyProducts` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Constraints for table `products`
+--
+ALTER TABLE `products`
+  ADD CONSTRAINT `categories` FOREIGN KEY (`category`) REFERENCES `category` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
