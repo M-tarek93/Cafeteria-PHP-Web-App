@@ -26,6 +26,10 @@
             }
         }
 
+        public function disconnectDB(){
+            $this->conn = null;
+        }
+
         public function getUsers(){
             $stmt=$this->conn->prepare('select * from users');
             $stmt->execute();
@@ -72,9 +76,17 @@
             }
         }
 
+        function selectAllProducts (){
+            $this->connectDB();
+            $stmt= $this->conn->prepare("SELECT * FROM products;");
+            $stmt->execute();
+            $allProducts = $stmt->fetchAll();
+            return $allProducts;
+        }
+
         public function displayUserOrders($username){
             $this->connectDB();
-            $sql = "SELECT * from orders_items, orders, products WHERE `orders_items`.`order_id` = `orders`.`order_id` and `products`.`id` = `orders_items`.`product_id` AND `orders`.`username` = ? LIMIT 10";
+            $sql = "SELECT * from orders_items, orders, products WHERE `orders_items`.`order_id` = `orders`.`id` and `products`.`id` = `orders_items`.`product_id` AND `orders`.`username` = ? LIMIT 10";
             try{
                 $stmt = $this->conn->prepare($sql);
                 $stmt->bindValue(1,$username);
@@ -172,67 +184,28 @@
                 echo $e->getMessage();
             }
         }
-        public function insertProduct($productname,$price, $category, $image,$IsAvailable)
-        {
-    
+
+        public function insertProduct($name, $price, $category, $image){
             $this->connectDB();
     
             // prepare sql and bind parameters
-            $stmt = $this->conn->prepare("INSERT INTO products ( productname,price , category ,image, IsAvailable
-                )
-                VALUES (:productname,:price,:category,:image,:IsAvailable)");
-            $stmt->bindParam(':productname', $productname);
+            $stmt = $this->conn->prepare("INSERT INTO products ( name, price , category , image) VALUES (:name, :price, :category, :image)");
+            $stmt->bindParam(':name', $name);
             $stmt->bindParam(':price', $price);
             $stmt->bindParam(':category', $category);
             $stmt->bindParam(':image', $image);
-            $stmt->bindParam(':IsAvailable', $IsAvailable);
-    
             $stmt->execute();
-            $this->disconnectDB();
-    
-        }
-        public function insertCategory($productname,$price, $category, $image,$IsAvailable)
-        {
-    
-            $this->connectDB();
-    
-            // prepare sql and bind parameters
-            $stmt = $this->conn->prepare("INSERT INTO products ( productname,price , category ,image, IsAvailable
-            )
-            VALUES (:productname,:price,:category,:image,:IsAvailable)");
-        $stmt->bindParam(':productname', $productname);
-        $stmt->bindParam(':price', $price);
-        $stmt->bindParam(':category', $category);
-        $stmt->bindParam(':image', $image);
-        $stmt->bindParam(':IsAvailable', $IsAvailable);
-    
-        $stmt->execute();
-        $this->disconnectDB();
-            
-    
-    
         }
     
-        function selectAll (){ 
-           
-             $this->connectDB();
-            $stmt= $this->conn->prepare("SELECT * FROM products;");
-            $stmt->execute();
-            $allProducts = $stmt->fetchAll();
-            return $allProducts;
-           
-    // $this->disconnectDB();
-        }
-    
-        public function updateProduct($productname, $price, $category, $image, $IsAvailable=1,$id) {
-            $sql = 'update products set productname = ?, price = ?, category = ?, image = ?, IsAvailable = ? where id = ?';
+        public function updateProduct($name, $price, $category, $image, $isAvailable=1,$id) {
+            $sql = 'update products set name = ?, price = ?, category = ?, image = ?, isAvailable = ? where id = ?';
             try{
                 $stmt = $this->conn->prepare($sql);
-                $stmt->bindValue(1, $productname);
+                $stmt->bindValue(1, $name);
                 $stmt->bindValue(2, $price);
                 $stmt->bindValue(3, $category);
                 $stmt->bindValue(4, $image);
-                $stmt->bindValue(5, $IsAvailable);
+                $stmt->bindValue(5, $isAvailable);
                 $stmt->bindValue(6, $id);
     
     
@@ -241,14 +214,21 @@
                 echo $e->getMessage();
             }
         }
-     
+
         public function getOrders($username,$from_date,$to_date){
-            $stmt=$this->conn->prepare('SELECT order_id,date,status,total_price FROM orders WHERE username=? AND date BETWEEN ? AND ?');
+            $stmt=$this->conn->prepare('SELECT id,date,status,total_price FROM orders WHERE username=? AND date BETWEEN ? AND ?');
             $stmt->execute([$username,$from_date,$to_date]);
             return $stmt->fetchAll();
         }
+     
+        public function getAllOrders(){
+            $stmt=$this->conn->prepare('SELECT * FROM orders');
+            $stmt->execute();
+            return $stmt->fetchAll();
+        }
+
         public function cancelOrder($order_id){
-            $stmt=$this->conn->prepare('DELETE FROM orders WHERE order_id= ?');
+            $stmt=$this->conn->prepare('DELETE FROM orders WHERE id= ?');
             $stmt->execute([$order_id]);
             return $stmt->rowCount();
         }
@@ -258,7 +238,7 @@
             $products=$stmt->fetchAll();
             $order_items=array();
             foreach ($products as $element ){
-                $stmt=$this->conn->prepare('SELECT  productname,price,image FROM products WHERE id= ?');
+                $stmt=$this->conn->prepare('SELECT  name,price,image FROM products WHERE id= ?');
                 $stmt->execute([$element["product_id"]]);
                 $item=$stmt->fetchAll();
                 $order_items[]=$item;
@@ -266,10 +246,16 @@
             echo (json_encode($order_items));   
         }
 
+        public function getCategory($id){
+            $stmt = $this->conn->prepare('select name from category where id = ?');
+            $stmt->bindValue(1, $id);
+            $stmt->execute();
+            return $stmt->fetchAll();
+        }
+        public function getAllCategories(){
+            $stmt = $this->conn->prepare('select * from category');
+            $stmt->execute();
+            return $stmt->fetchAll();
+        }
     }
 
-    // $db = new databaseHandler();
-    // $data = $db->displayUserOrders();
-    // foreach($data as $order ){
-    //     echo $order["name"] . " " . $order['username'];
-    // }

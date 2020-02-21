@@ -25,12 +25,16 @@ $user=$_SESSION["username"];
     <?php
         require_once('databaseHandler.php');
         $db = new databaseHandler();
-        $result = $db->getOrders($user,$_POST["from_date"],$_POST["to_date"]);
+        $result = $db->getAllOrders();
+        if (isset($_POST['submit'])){
+            $result = $db->getOrders($user, $_POST["from_date"], $_POST["to_date"]);
+        }
     ?>
     
     <table class="table table-bordered justify-content-center text-center " id="orders_table">
         <tr class="thead-dark">
-            <th>Order Date</th>
+            <th>View Details</th> 
+            <th>Date</th>
             <th>Status</th>
             <th>Amount</th>
             <th>Action</th>
@@ -40,13 +44,24 @@ $user=$_SESSION["username"];
             let total_amount=0;
             <?= json_encode($result) ?>.forEach(myFun);
             function myFun(item,index){
+                let status=""
+                if(item["status"]===1){
+                    status = "Processing";
+                }
+                else if(item["status"]===2){
+                    status = "Out For Delivery";
+                }
+                else if(item["status"]===3){
+                    status = "Done";
+                }
+
                 tr = document.createElement("tr");
-                tr.setAttribute("row_id",item["order_id"]);
-                tr.innerHTML= "<td>" + item["date"] + "<button class='not_viewd btn btn-info' onclick=" + "view(this," + item["order_id"] + "); return false;' id=" + item["order_id"] + ">+</button></td>"
-                + "<td>" + item["status"] + "</td>"
+                tr.setAttribute("row_id",item["id"]);
+                tr.innerHTML= "<td><button class='not_viewd btn btn-info' onclick=" + "view(this," + item["order_id"] + "); return false;' id=" + item["id"] + ">+</button></td><td>" + item["date"] + "</td>"
+                + "<td>" + status + "</td>"
                 + "<td>" + item["total_price"] + "</td>";
-                if(item["status"] == "processing"){
-                    tr.innerHTML += "<td>" + "<button class='cancel btn btn-danger' id=" + item["order_id"] + ">Cancel</button></td>";
+                if(item["status"] === 1){
+                    tr.innerHTML += "<td>" + "<button class='cancel btn btn-danger' id=" + item["id"] + ">Cancel</button></td>";
                 }
                 table.append(tr);
                 total_amount+=item["total_price"];

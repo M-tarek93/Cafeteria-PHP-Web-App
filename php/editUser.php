@@ -4,12 +4,12 @@
     <title>Cafeteria</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 	<link rel="stylesheet" href="style.css">
-    <link rel="shortcut icon" type="image/x-icon" href="../../images/favicon.ico" />
+    <link rel="shortcut icon" type="image/x-icon" href="../../assets/images/favicon.ico" />
 </head>
 <body >
 	<div class="container justify-content-center">
 		<h1><a>Edit Users</a></h1>
-		<form method="post" action="../update.php" enctype="multipart/form-data">	
+		<form method="post" action="../updateUser.php" enctype="multipart/form-data">	
 			<ul >
 				<li class="form-group">
 					<label>Username </label>
