@@ -22,15 +22,13 @@
                 throw new \PDOException($e->getMessage(), (int)$e->getCode());
             }
         }
-        private function disconnectDB(){
-            $this->conn = null;
-        }
-        public function insertUser($usernaem, $password, $email, $room, $ext, $profilePic, $role=0) : int {
+
+        public function insertUser($username, $password, $email, $room, $ext, $profilePic, $role=0) : int {
             $this->connectDB();
             $sql = "INSERT INTO users( username, password, email, room, ext, profile_pic, role) values(?,?,?,?,?,?,?);";
             try{
                 $stmt = $this->conn->prepare($sql);
-                $stmt->bindValue( 1, $usernaem );
+                $stmt->bindValue( 1, $username );
                 $stmt->bindValue( 2, $password );
                 $stmt->bindValue( 3, $email );
                 $stmt->bindValue( 4, $room );
@@ -44,5 +42,111 @@
             }
         }
 
+        public function displayUserOrders($username){
+            $this->connectDB();
+            $sql = "SELECT * from orders_items, orders, products WHERE `orders_items`.`order_id` = `orders`.`order_id` and `products`.`id` = `orders_items`.`product_id` AND `orders`.`username` = ? LIMIT 10";
+            try{
+                $stmt = $this->conn->prepare($sql);
+                $stmt->bindValue(1,$username);
+                $stmt->execute();
+                $result = $stmt->fetchAll();
+                return $result;
+            } catch(PDOException $e) {
+                echo $e->getMessage();
+            }
+        }
+
+        public function displayProducts(){
+            $this->connectDB();
+            $sql = "SELECT * FROM products;";
+            try{
+                $stmt = $this->conn->prepare($sql);
+                $stmt->execute();
+                $result = $stmt->fetchAll();
+                return $result;
+            } catch(PDOException $e){
+                echo $e->getMessage();
+            }
+        }
+
+        public function getDistinctRooms(){
+            $this->connectDB();
+            $sql = "SELECT DISTINCT room FROM users;";
+            try{
+                $stmt = $this->conn->prepare($sql);
+                $stmt->execute();
+                $result = $stmt->fetchAll();
+                return $result;
+            } catch( PDOException $e) {
+                echo $e->getMessage();
+            }
+        }
+
+        public function getDistinctExt(){
+            $this->connectDB();
+            $sql = "SELECT DISTINCT ext FROM users;";
+            try{
+                $stmt = $this->conn->prepare($sql);
+                $stmt->execute();
+                $result = $stmt->fetchAll();
+                return $result;
+            } catch( PDOException $e) {
+                echo $e->getMessage();
+            }
+        }
+
+        public function insertOrder($notes, $room, $ext, $totalPrice, $username){
+            $this->connectDB();
+            $sql = "INSERT INTO orders(Notes, date, room, ext, total_price, status, username) VALUES( ?, CURRENT_DATE(), ?, ?, ?, 'processing', ?);";
+            try{
+                $stmt = $this->conn->prepare($sql);
+                $stmt->bindValue(1,$notes);
+                $stmt->bindValue(2,$room);
+                $stmt->bindValue(3,$ext);
+                $stmt->bindValue(4,$totalPrice);
+                $stmt->bindValue(5,$username);
+                $stmt->execute();
+
+            } catch( PDOException $e){
+                echo $e->getMessage();
+            }
+        }
+
+        public function insertOrderItem($orderID, $productID){
+            $this->connectDB();
+            $sql = "INSERT INTO orders_items(order_id, product_id) VALUES(?, ?);";
+            try{
+                $stmt = $this->conn->prepare($sql);
+                $stmt->bindValue(1, $orderID);
+                $stmt->bindValue(2, $productID);
+                $stmt->execute();
+            } catch( PDOException $e){
+                echo $e->getMessage();
+            }
+        }
+
+        public function lastInsertId(){
+            return $this->conn->lastInsertId();
+        }
+
+        public function getUsers(){
+            $this->connectDB();
+            $sql = "SELECT username FROM users WHERE role !=1;";
+            
+            try{
+                $stmt = $this->conn->prepare($sql);
+                $stmt->execute();
+                $result = $stmt->fetchAll();
+                return $result;
+            } catch( PDOException $e){
+                echo $e->getMessage();
+            }
+        }
+
     }
 
+    // $db = new databaseHandler();
+    // $data = $db->displayUserOrders();
+    // foreach($data as $order ){
+    //     echo $order["name"] . " " . $order['username'];
+    // }
