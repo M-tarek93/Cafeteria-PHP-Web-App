@@ -1,6 +1,6 @@
 <?php
 session_start();
-$_SESSION["username"]="Dawn";
+$_SESSION["username"]="Breanna";
 $user=$_SESSION["username"];
 ?>
 <!DOCTYPE html>
@@ -25,28 +25,31 @@ $user=$_SESSION["username"];
     <?php
         require_once('databaseHandler.php');
         $db = new databaseHandler();
-        $result = $db->getOrders($user,$_POST["from_date"],$_POST["to_date"]);
+        $result = $db->getMyOrders($user,$_POST["from_date"],$_POST["to_date"]);
     ?>
     
     <table class="table table-bordered justify-content-center text-center " id="orders_table">
         <tr class="thead-dark">
             <th>Order Date</th>
+            <th>View</th>
             <th>Status</th>
             <th>Amount</th>
             <th>Action</th>
         </tr>
-        <script ty>
+        <script>
             let table = document.getElementById("orders_table");
             let total_amount=0;
+            let item_status=["Processing","Out for Delivery","Done"];
             <?= json_encode($result) ?>.forEach(myFun);
             function myFun(item,index){
                 tr = document.createElement("tr");
-                tr.setAttribute("row_id",item["order_id"]);
-                tr.innerHTML= "<td>" + item["date"] + "<button class='not_viewd btn btn-info' onclick=" + "view(this," + item["order_id"] + "); return false;' id=" + item["order_id"] + ">+</button></td>"
-                + "<td>" + item["status"] + "</td>"
+                tr.setAttribute("row_id",item["id"]);
+                tr.innerHTML= "<td>" + item["date"] + "</td>"
+                + "<td><button class='not_viewd btn btn-info' onclick=" + "view(this," + item["id"] + "); return false;' id=" + item["id"] + ">+</button></td>"
+                + "<td>" + item_status[item["status"]-1] + "</td>"
                 + "<td>" + item["total_price"] + "</td>";
-                if(item["status"] == "processing"){
-                    tr.innerHTML += "<td>" + "<button class='cancel btn btn-danger' id=" + item["order_id"] + ">Cancel</button></td>";
+                if(item["status"] == "1"){
+                    tr.innerHTML += "<td>" + "<button class='cancel btn btn-danger' id=" + item["id"] + ">Cancel</button></td>";
                 }
                 table.append(tr);
                 total_amount+=item["total_price"];
@@ -107,12 +110,12 @@ $user=$_SESSION["username"];
                     order_details_table.appendChild(order_details_table_headings);
                     for (var key in response) {
                         let order_item=document.createElement('tr');
-                        order_item.innerHTML="<td>"+response[key][0]["productname"]+"</td>"+
+                        order_item.innerHTML="<td>"+response[key][0]["name"]+"</td>"+
                                              "<td>"+response[key][0]["price"]+"</td>"+
-                                             "<td><img src=../images/"+response[key][0]["image"]+" height=50px width=50px></td>";
+                                             "<td><img src=../assets/images/products/"+response[key][0]["image"]+" height=50px width=50px></td>";
                         order_details_table.appendChild(order_item);
                     }
-                    document.body.appendChild(order_details_table);
+                    element.closest('table').after(order_details_table);
                     element.setAttribute("class","viewd btn btn-danger");
                     element.setAttribute("onclick","hide(this,"+order_id+")");
                     element.innerHTML="-";  
@@ -132,7 +135,7 @@ $user=$_SESSION["username"];
         </script>
     </table>
     <div class="col-9 text-right ">
-    <h2>Total</h2>
+    <h2>Total Amount</h2>
     <h3 id="total"></h3>
     <script>document.getElementById("total").innerHTML = total_amount;</script>
     </div>
