@@ -1,0 +1,16 @@
+.userphoto{
+    width: 4%;
+    height: 4%;
+}
+.userphoto{
+    display: inline;
+}
+.username{
+    display: inline;
+}
+.userhead{
+    margin-left: 60%;
+}
+.label{
+    width: 200px;
+}
