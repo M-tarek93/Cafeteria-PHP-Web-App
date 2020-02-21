@@ -242,7 +242,29 @@
             }
         }
      
-        
+        public function getOrders($username,$from_date,$to_date){
+            $stmt=$this->conn->prepare('SELECT order_id,date,status,total_price FROM orders WHERE username=? AND date BETWEEN ? AND ?');
+            $stmt->execute([$username,$from_date,$to_date]);
+            return $stmt->fetchAll();
+        }
+        public function cancelOrder($order_id){
+            $stmt=$this->conn->prepare('DELETE FROM orders WHERE order_id= ?');
+            $stmt->execute([$order_id]);
+            return $stmt->rowCount();
+        }
+        public function getOrderDetails($order_id){
+            $stmt=$this->conn->prepare('SELECT product_id FROM orders_items WHERE order_id= ?');
+            $stmt->execute([$order_id]);
+            $products=$stmt->fetchAll();
+            $order_items=array();
+            foreach ($products as $element ){
+                $stmt=$this->conn->prepare('SELECT  productname,price,image FROM products WHERE id= ?');
+                $stmt->execute([$element["product_id"]]);
+                $item=$stmt->fetchAll();
+                $order_items[]=$item;
+            }
+            echo (json_encode($order_items));   
+        }
 
     }
 

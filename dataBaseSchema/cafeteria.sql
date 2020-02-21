@@ -1,15 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.1
--- https://www.phpmyadmin.net/
+-- version 4.4.15.10
+-- https://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Feb 19, 2020 at 04:21 PM
--- Server version: 10.4.11-MariaDB
--- PHP Version: 7.4.2
+-- Generation Time: Feb 21, 2020 at 09:38 AM
+-- Server version: 5.5.64-MariaDB
+-- PHP Version: 7.2.28
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
-START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -28,15 +26,23 @@ SET time_zone = "+00:00";
 -- Table structure for table `orders`
 --
 
-CREATE TABLE `orders` (
+CREATE TABLE IF NOT EXISTS `orders` (
   `order_id` int(11) NOT NULL,
-  `date` date NOT NULL,
+  `date` datetime NOT NULL,
   `room` int(11) NOT NULL,
   `ext` int(11) NOT NULL,
   `total_price` int(11) NOT NULL,
   `status` varchar(50) NOT NULL,
   `username` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `orders`
+--
+
+INSERT INTO `orders` (`order_id`, `date`, `room`, `ext`, `total_price`, `status`, `username`) VALUES
+(1, '2020-02-02 00:00:00', 33, 33, 19, 'done', 'Dawn'),
+(20, '2020-02-06 09:13:00', 44, 54, 7, 'processing', 'Dawn');
 
 -- --------------------------------------------------------
 
@@ -44,10 +50,20 @@ CREATE TABLE `orders` (
 -- Table structure for table `orders_items`
 --
 
-CREATE TABLE `orders_items` (
+CREATE TABLE IF NOT EXISTS `orders_items` (
   `order_id` int(11) NOT NULL,
   `product_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `orders_items`
+--
+
+INSERT INTO `orders_items` (`order_id`, `product_id`) VALUES
+(1, 1),
+(1, 2),
+(1, 2),
+(20, 2);
 
 -- --------------------------------------------------------
 
@@ -55,31 +71,37 @@ CREATE TABLE `orders_items` (
 -- Table structure for table `products`
 --
 
-CREATE TABLE `products` (
+CREATE TABLE IF NOT EXISTS `products` (
   `productname` varchar(50) NOT NULL,
   `price` int(11) NOT NULL,
   `category` varchar(50) NOT NULL,
   `image` varchar(255) NOT NULL,
   `id` int(11) NOT NULL,
   `IsAvailable` tinyint(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `products`
+--
+
+INSERT INTO `products` (`productname`, `price`, `category`, `image`, `id`, `IsAvailable`) VALUES
+('Tea', 5, 'Hot Drinks', 'tea.png', 1, 1),
+('coffee', 7, 'Hot Drinks', 'coffee.png', 2, 1);
 
 -- --------------------------------------------------------
-INSERT INTO `products` (`productname`, `price`, `category`, `image`, `id`, `IsAvailable`) VALUES
-('Ahmed', 5, 'nescafe', 'Screenshot from 2020-02-16 20-47-20.png', 1, 0);
 
 --
 -- Table structure for table `users`
 --
 
-CREATE TABLE `users` (
+CREATE TABLE IF NOT EXISTS `users` (
   `username` varchar(50) NOT NULL,
   `password` varchar(50) NOT NULL,
   `email` varchar(150) NOT NULL,
   `room` int(11) NOT NULL,
   `ext` int(11) NOT NULL,
   `profile_pic` varchar(255) NOT NULL,
-  `role` int(11) NOT NULL DEFAULT 0
+  `role` int(11) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -183,14 +205,12 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT;
-
+  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=21;
 --
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 --
 -- Constraints for dumped tables
 --
@@ -207,7 +227,6 @@ ALTER TABLE `orders`
 ALTER TABLE `orders_items`
   ADD CONSTRAINT `orderItemsForiegnKeyOrders` FOREIGN KEY (`order_id`) REFERENCES `orders` (`order_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `orderItemsForiegnKeyProducts` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
