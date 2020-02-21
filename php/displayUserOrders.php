@@ -1,7 +1,7 @@
 <?php
 
     session_start();
-    require_once "php/databaseHandler.php";
+    require_once "databaseHandler.php";
 
     if( isset($_SESSION['username']) && isset($_SESSION['role'])  ){
         
@@ -11,7 +11,7 @@
         <html>
             <head>
             <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-            <link rel = "stylesheet" type = "text/css" href = "css/displayUserOrders.css">
+            <link rel = "stylesheet" type = "text/css" href = "../assets/css/displayUserOrders.css">
             <title><?php echo $_SESSION['username'];?> Orders</title>
             </head>
 
@@ -115,7 +115,7 @@
                 
                 </div>
 
-                <script src="JS/displayUserOrders.js"></script>
+                <script src="../JS/displayUserOrders.js"></script>
             </body>
         </html>
 <?php

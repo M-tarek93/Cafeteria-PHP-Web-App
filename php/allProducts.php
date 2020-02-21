@@ -3,11 +3,10 @@
 
 <head>
     <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <title>All Products</title>
+    <link rel="shortcut icon" type="image/x-icon" href="../assets/images/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" href="../../assets/css/font-awesome.min.css" />
-    <link rel="stylesheet" href="../../assets/bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" media="screen" href="../../assets/css/styles.css" />
 </head>
 
@@ -20,26 +19,18 @@
                     <a href="addProduct.php" class="btn btn-info">Add
                         Product</a>
                 </div>
+
                 <!-- products-panel -->
                 <div class="products-panel">
-                    <table class="table">
-                        <thead class="thead-light">
-                            <tr>
-                                <th scope="col">Product</th>
-                                <th scope="col">Price</th>
-                                <th scope="col">Image</th>
-                                <th scope="col">Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <!-- each-product -->
 
-                            <?php
-      include "listProduct_controller.php";                     
+                    <?php
+                        require_once("databaseHandler.php");
+                        $db = new databaseHandler ();
+                        $allProducts = $db->selectAllProducts();               
                             // foreach($allProducts as $product){
                             //    echo " 
                             // <tr class='each-product'>
-                            //     <td>".$product['productname']."</td>
+                            //     <td>".$product['name']."</td>
                             //     <td><span>".$product['price']."</span> EGP</td>
                             //     <td>
                             //         <img src='".$product['image']."' width='50' height'50' alt='' />
@@ -47,7 +38,7 @@
                             //     <td>
                             //         <div>
                             //             <button class='available btn btn-primary'>"
-                            //              .$product['IsAvailable'].   
+                            //              .$product['isAvailable'].   
                             //             "</button>";
                             //        echo"<a href='editProductForm_controller.php?id=";echo $product['id']."'> <button class='edit btn btn-secondary'>edit</button> </a>";
                             //     echo"<a href='deleteProduct_controller.php?id=";echo $product['id']."'> <button class='edit btn btn-secondary'>delete</button> </a>";
@@ -56,33 +47,27 @@
                             // </tr>";
                             // }
 
-                            echo '<table class="table table-bordered justify-content-center text-center "><tr class="thead-dark"><th>productName</th><th>price</th><th>image</th><th></th>
-    <th colspan=3>Action</th></tr>';
-    foreach ($allProducts as $product) {
-        echo "<tr><td class='align-middle'>" . $product['productname']. "</td>
-        <td class='align-middle'>" . $product['price']. "</td>
-        <td class='align-middle'>" . $product['image']. "</td>
-        
-        <td class='align-middle'>
-        <img class='img-thumbnail rounded' width=200px height=200px src = ../images/". $product['image']. ">
-        </td>
-        <td class='align-middle'><a href=deleteProduct.php/?productname=".$product['productname'].">
-        <button class='btn btn-danger'>delete</button></a></td><td class='align-middle'><a href=editProduct.php/?productname=".$product['productname']."&price=".$product['price']."&category=".$product['category']."&image=".$product['image']."&IsAvailable=".$product['IsAvailable']."&id=".$product['id'].">
-        <button class='btn btn-primary'>update</button></a></td>
-        <th>IsAvailable :</th>
-        <td class='align-middle'>" . $product['IsAvailable']. "</td>
-        
-        </tr>" ;
-    }
-    echo '</table>';
-                            ?>
-                            <!-- ./each-product -->
-
-                            <!-- ./each-product -->
-                        </tbody>
-                    </table>
+                        echo '<table class="table table-bordered justify-content-center text-center"><tr class="thead-dark"><th>Product Name</th><th>price</th><th>image</th>
+                        <th>Category</th><th>Availability</th><th colspan=2>Action</th></tr>';
+                        foreach ($allProducts as $product) {
+                            echo "<tr><td class='align-middle'>" . $product['name']. "</td>
+                            <td class='align-middle'>" . $product['price']. "$</td>
+                            <td class='align-middle'>
+                            <img class='img-thumbnail rounded' width=200px height=200px src = ../assets/images/products/". $product['image']. ">
+                            </td><td class='align-middle'>";
+                            $category = $db->getCategory($product['category']);
+                            echo $category[0]["name"] . "</td><td class='align-middle'>";
+                            if ($product['isAvailable']==1){echo "Available";}else{echo "Unavailable";}
+                            echo "</td><td class='align-middle'><a href=editProduct.php/?name=".$product['name'].
+                            "&price=".$product['price']."&category=".$product['category']."&image=".$product['image']."&isAvailable=".$product['isAvailable']."&id=".$product['id'].">
+                            <button class='btn btn-primary'>update</button></a></td><td class='align-middle'><a href=deleteProduct.php/?name=".$product['name'].">
+                            <button class='btn btn-danger'>delete</button></a></td>
+                            
+                            </tr>" ;
+                        }
+                        echo '</table>';
+                    ?>
                 </div>
-                <!-- ./products-panel -->
             </div>
         </section>
     </main>

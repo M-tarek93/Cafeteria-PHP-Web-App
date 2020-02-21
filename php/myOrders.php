@@ -23,9 +23,11 @@ $user=$_SESSION["username"];
         <input type="submit" value="submit">
     </form>
     <?php
+    if (isset($_POST['submit'])){
         require_once('databaseHandler.php');
         $db = new databaseHandler();
         $result = $db->getMyOrders($user,$_POST["from_date"],$_POST["to_date"]);
+    }
     ?>
     
     <table class="table table-bordered justify-content-center text-center " id="orders_table">
@@ -42,6 +44,17 @@ $user=$_SESSION["username"];
             let item_status=["Processing","Out for Delivery","Done"];
             <?= json_encode($result) ?>.forEach(myFun);
             function myFun(item,index){
+                let status=""
+                if(item["status"]===1){
+                    status = "Processing";
+                }
+                else if(item["status"]===2){
+                    status = "Out For Delivery";
+                }
+                else if(item["status"]===3){
+                    status = "Done";
+                }
+
                 tr = document.createElement("tr");
                 tr.setAttribute("row_id",item["id"]);
                 tr.innerHTML= "<td>" + item["date"] + "</td>"

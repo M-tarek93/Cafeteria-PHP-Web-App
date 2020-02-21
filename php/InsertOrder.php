@@ -2,7 +2,7 @@
     
     session_start();
 
-    require_once 'php/databaseHandler.php';
+    require_once 'databaseHandler.php';
     if( $_SERVER['REQUEST_METHOD'] == 'POST'){
 
         if( isset( $_POST['order'] ) && !empty( $_POST['room'] ) && !empty($_POST['ext']) ){
@@ -33,7 +33,7 @@
             if( isset($_SERVER['HTTP_REFERER'])){
                 header("Location: displayUserOrders.php?msg=empty");
             } else {
-                header("Location: index.html");
+                header("Location: ../index.html");
             }
         }
     } else {
