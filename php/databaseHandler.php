@@ -196,17 +196,31 @@
             $stmt->bindParam(':image', $image);
             $stmt->execute();
         }
-    
-        public function updateProduct($name, $price, $category, $image, $isAvailable=1,$id) {
-            $sql = 'update products set name = ?, price = ?, category = ?, image = ?, isAvailable = ? where id = ?';
+        // public function updateProduct($name, $price,$image ,$category) {
+        //     $sql = 'update products set name = ? , price = ? , image = ? , category = ? where name = ?';
+        //     try{
+        //         $stmt = $this->conn->prepare($sql);
+        //         $stmt->bindValue(1, $name);
+        //         $stmt->bindValue(2, $price);
+        //         $stmt->bindValue(3, $image);
+        //         $stmt->bindValue(4, $category);
+               
+        //         $stmt->execute();
+        //     }catch(PDOException $e){
+        //         echo $e->getMessage();
+        //     }
+        // }
+
+        public function updateProduct($productname, $price, $image , $category) {
+            $sql = 'update products set name = ?, price = ? , image = ?, category = ?';
             try{
                 $stmt = $this->conn->prepare($sql);
-                $stmt->bindValue(1, $name);
+                $stmt->bindValue(1, $productname);
                 $stmt->bindValue(2, $price);
-                $stmt->bindValue(3, $category);
-                $stmt->bindValue(4, $image);
-                $stmt->bindValue(5, $isAvailable);
-                $stmt->bindValue(6, $id);
+                $stmt->bindValue(3, $image);
+
+                $stmt->bindValue(4, $category);
+              
     
     
                 $stmt->execute();
@@ -280,5 +294,15 @@
         
 
     }
+
+    public function deleteProduct($name){
+        $stmt=$this->conn->prepare('delete from products where id = ?');
+        $stmt->bindValue( 1, $name );
+        $stmt->execute();
+        return $stmt->rowCount();
+        // return $stmt->rowCount();
+    }
+    
+
 }
 

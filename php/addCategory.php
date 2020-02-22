@@ -24,6 +24,9 @@ if (isset($_POST['submit'])) {
 $category = $_POST['category'];
 $db=new databaseHandler();
 $db->insertCategory($category);
+header("Location: addProduct.php");
+// header("Location: allProducts.php");
+
 }
 
 
