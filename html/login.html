@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="../assets/css/login.css">
+    <link rel="stylesheet" href="login.css">
     <title>Login | Cafeteria </title>
 </head>
 <body>
@@ -12,12 +12,22 @@
         <h1 class="cafHead">Cafeteria</h1>
     </header>
     <section>
-        <span class="emaiLabel">Email</span>
-        <input type="email" name="email" class="emailin">
-        <span class="passLabel">Password</span>
-        <input type="password" name="password" class="pass">
-        <button type="submit">Login</button>
-        <a href="#">Forget Password?</a>
+        <form method="post" action="../php/loginHandler.php" >
+            <div class="form-group">
+                <label>Email</label>
+                <input type="text" name="email" class="form-control">
+            </div>    
+            <div class="form-group">
+                <label>Password</label>
+                <input type="password" name="password" class="form-control">
+                <span class="help-block"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" class="btn btn-primary" value="Login">
+            </div>
+            <p><a href="forgerPass.html">Forget Password</a></p>
+            <p>Don't have an account? <a href="register.html">Sign up now</a>.</p>
+        </form>
     </section>
 </body>
 </html>
