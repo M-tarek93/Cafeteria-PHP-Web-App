@@ -30,6 +30,7 @@
                     </div>
                     <div class="form-group row">
                         <label for="" class="offset-sm-1 col-sm-2 control-label">Category</label>
+                  
                         <div class="col-sm-4">
                             <select name="category" id='select' class="form-control">
 
@@ -46,6 +47,11 @@
 
 
                             </select>
+                       
+                        </div>
+                        <div class="col-sm-2">
+                            <a href='addCategory.php'
+                                class="btn btn-info w-100">Add Category</a>
                         </div>
                     </div>
                     <div class="form-group row">

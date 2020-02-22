@@ -269,5 +269,16 @@
             $stmt->execute();
             return $stmt->fetchAll();
         }
+
+        public function insertCategory($name){
+            $sql = "INSERT INTO category(name) VALUES(?);";
+            
+                $stmt = $this->conn->prepare($sql);
+                $stmt->bindValue(1, $name);
+            $stmt->execute();
+        
+        
+
     }
+}
 
