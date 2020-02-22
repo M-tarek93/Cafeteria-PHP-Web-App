@@ -33,13 +33,21 @@ function checkLogin (){
             $count=mysqli_num_rows($result);
             if($count!=1){
                 echo " Invalid Email or Password!";
-            
+            $sqlu= "SELECT username FROM users WHERE email = '$email' AND password = '$password'";
+            $user=mysqli_query($conn,$user);
     }else {
-        echo "welcome back!";
+        echo "welcome back!"." $user"."<br>"."<a href='#'>Go to Home page</a>";
         //header("location: homepage.html");
     }
+    mysqli_close($con);
 }}
-}}
+}
+
+function disconnect(){
+
+}
+
+}
 $log = new LoginHandler();
 $log->checkLogin();
 

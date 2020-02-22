@@ -102,9 +102,9 @@ class AddUser{
             if($userNameErr==="" & $emailErr=== "" & $passErr==="" & $confPassErr==="" & $roomErr==="" & $extErr===""){
                 if(($_FILES['file']['name'])==NULL){
             $Datbase->insertUser($userName,$password, $email,$roomNum, $exten, "NOT EXIST", $role);        
-                }
-            $Datbase->insertUser($userName,$password, $email,$roomNum, $exten, $_FILES['file']['name'], $role);
-            echo $userName." have been added successfully";
+                }else{
+            $Datbase->insertUser($userName,$password, $email,$roomNum, $exten, $_FILES['file']['name'], $role);}
+            echo $userName." has been added successfully"."<br>"."<a href='#'> Return to Home </a>";
             }else{
                 echo "*********************** ERRORS PAGE ***********************<br>";
                 echo $userNameErr."<br>";
