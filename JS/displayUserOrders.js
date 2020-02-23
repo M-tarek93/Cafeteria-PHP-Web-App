@@ -63,7 +63,7 @@ function totalAmountAdded(){
     let lastvalue = parseInt(this.dataset.lastvalue);
     let currentvalue = parseInt(this.value);
 
-    if(this.value >= 0){  // removing the input if it reaches 0 
+    if(this.value <= 0){  // removing the input if it reaches 0 
         let parent = this.parentElement;
         inputTotal.value = ( parseInt(inputTotal.value ) - ( parseInt(this.dataset.price) * (lastvalue - currentvalue) ) );
         console.log(this.dataset.name); 
