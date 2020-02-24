@@ -58,6 +58,18 @@
                 echo $e->getMessage();
             }
         }
+
+	public function resetPass($newPass,$username){
+    $sql = 'UPDATE users SET password= ? WHERE username=?';
+    try{
+        $stmt= $this->conn->prepare($sql);
+        $stmt->bindValue(1,$newPass);
+        $stmt->bindValue(2,$username);
+        $stmt->execute();
+    }catch(PDOException $e){
+        echo $e->getmessage();
+    }
+	}
         public function insertUser($username, $password, $email, $room, $ext, $profilePic, $role=0) : int {
             $sql = "INSERT INTO users( username, password, email, room, ext, profile_pic, role) values(?,?,?,?,?,?,?);";
             try{
@@ -139,7 +151,7 @@
 
         public function insertOrder($notes, $room, $ext, $totalPrice, $username){
             $this->connectDB();
-            $sql = "INSERT INTO orders(Notes, date, room, ext, total_price, status, username) VALUES( ?, CURRENT_DATE(), ?, ?, ?, '1', ?);";
+            $sql = "INSERT INTO orders(Notes, date, room, ext, total_price, status, username) VALUES( ?, CURRENT_DATE(), ?, ?, ?, 'processing', ?);";
             try{
                 $stmt = $this->conn->prepare($sql);
                 $stmt->bindValue(1,$notes);
@@ -290,9 +302,6 @@
                 $stmt = $this->conn->prepare($sql);
                 $stmt->bindValue(1, $name);
             $stmt->execute();
-        
-        
-
     }
 
     public function deleteProduct($name){
@@ -301,6 +310,20 @@
         $stmt->execute();
         return $stmt->rowCount();
         // return $stmt->rowCount();
+    }
+
+    public function CheckEmailExist($email){
+        $stmt=$this->conn->prepare('SELECT email FROM users WHERE email = ?');
+        $stmt->bindValue(1, $email);
+        $stmt->execute();
+        return $stmt->rowCount();
+    }
+    
+    public function UsernameExist($username){
+        $stmt=$this->conn->prepare('SELECT username FROM users WHERE username = ?');
+        $stmt->bindValue(1, $username);
+        $stmt->execute();
+        return $stmt->rowCount();
     }
     
 
