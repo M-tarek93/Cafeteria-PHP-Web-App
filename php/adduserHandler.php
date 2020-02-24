@@ -1,5 +1,4 @@
 <?php
-session_start();
 
 require_once('databaseHandler.php');
 
@@ -25,8 +24,12 @@ class AddUser{
         }else{
             $email= $_POST['email'];
             if(! preg_match('/^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/',$email)){
-                $emailErr= $emailErr. " *Wrong E-mail";
+                $emailErr= $emailErr. " *Wrong E-mail format";
             };
+            $count= $Datbase->CheckEmailExist($_POST['email']);
+            if($count>=1){
+                $emailErr=" *Email is already exist";
+            }
         }
 
         #--------------------Password validation----------------------#
@@ -81,7 +84,7 @@ class AddUser{
            $file_ext=strtolower(end($ext));
         
            $extensions= array("jpeg","jpg","png");
-           
+           if($file_name!=NULL){
            if(in_array($file_ext,$extensions)=== false){
                $errors[]="extension not allowed, please choose a JPEG or PNG file.";
            }
@@ -93,7 +96,7 @@ class AddUser{
             }
            }else{
                print_r($errors);
-           }
+           }}
         }
         #----------------------------Set Role--------------------------------#
         $role=$_POST['role'];
@@ -102,9 +105,9 @@ class AddUser{
             if($userNameErr==="" & $emailErr=== "" & $passErr==="" & $confPassErr==="" & $roomErr==="" & $extErr===""){
                 if(($_FILES['file']['name'])==NULL){
             $Datbase->insertUser($userName,$password, $email,$roomNum, $exten, "NOT EXIST", $role);        
-                }
-            $Datbase->insertUser($userName,$password, $email,$roomNum, $exten, $_FILES['file']['name'], $role);
-            echo $userName." have been added successfully";
+                }else{
+            $Datbase->insertUser($userName,$password, $email,$roomNum, $exten, $_FILES['file']['name'], $role);}
+            echo $userName." has been added successfully"."<br>"."<a href='#'> Return to Home </a>";
             }else{
                 echo "*********************** ERRORS PAGE ***********************<br>";
                 echo $userNameErr."<br>";

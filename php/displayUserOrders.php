@@ -2,7 +2,6 @@
 
     session_start();
     require_once "databaseHandler.php";
-
     if( isset($_SESSION['username']) && isset($_SESSION['role'])  ){
         
         

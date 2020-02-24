@@ -48,13 +48,14 @@ section.formToOrder{
 
 section.OrdersToDisplay{
     flex-basis: 65%;
+    margin: 10px;
 }
 
 div.order img, div.product img {
     width: 50px;
 }
 
-div.latestOrders{
+div.latestOrders, div.availableProducts{
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap;
@@ -63,11 +64,6 @@ div.latestOrders{
 div.order{
     margin: 10px;
     flex-grow: 1;
-}
-
-div.availableProducts{
-    display: flex;
-    justify-content: space-around;
 }
 
 div.product{

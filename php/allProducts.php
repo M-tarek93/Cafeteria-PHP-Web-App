@@ -58,9 +58,9 @@
                             $category = $db->getCategory($product['category']);
                             echo $category[0]["name"] . "</td><td class='align-middle'>";
                             if ($product['isAvailable']==1){echo "Available";}else{echo "Unavailable";}
-                            echo "</td><td class='align-middle'><a href=editProduct.php/?name=".$product['name'].
-                            "&price=".$product['price']."&category=".$product['category']."&image=".$product['image']."&isAvailable=".$product['isAvailable']."&id=".$product['id'].">
-                            <button class='btn btn-primary'>update</button></a></td><td class='align-middle'><a href=deleteProduct.php/?name=".$product['name'].">
+                            echo "</td><td class='align-middle'><a href=UpdateProduct.php/?name=".$product['name'].
+                            "&price=".$product['price']."&image=".$product['image']."&category=".$product['category'].">
+                            <button class='btn btn-primary'>update</button></a></td><td class='align-middle'><a href=deleteProduct.php/?id=".$product['id'].">
                             <button class='btn btn-danger'>delete</button></a></td>
                             
                             </tr>" ;

@@ -64,6 +64,18 @@
                 echo $e->getMessage();
             }
         }
+
+	public function resetPass($newPass,$username){
+    $sql = 'UPDATE users SET password= ? WHERE username=?';
+    try{
+        $stmt= $this->conn->prepare($sql);
+        $stmt->bindValue(1,$newPass);
+        $stmt->bindValue(2,$username);
+        $stmt->execute();
+    }catch(PDOException $e){
+        echo $e->getmessage();
+    }
+	}
         public function insertUser($username, $password, $email, $room, $ext, $profilePic, $role=0) : int {
             $sql = "INSERT INTO users( username, password, email, room, ext, profile_pic, role) values(?,?,?,?,?,?,?);";
             try{
@@ -202,17 +214,31 @@
             $stmt->bindParam(':image', $image);
             $stmt->execute();
         }
-    
-        public function updateProduct($name, $price, $category, $image, $isAvailable=1,$id) {
-            $sql = 'update products set name = ?, price = ?, category = ?, image = ?, isAvailable = ? where id = ?';
+        // public function updateProduct($name, $price,$image ,$category) {
+        //     $sql = 'update products set name = ? , price = ? , image = ? , category = ? where name = ?';
+        //     try{
+        //         $stmt = $this->conn->prepare($sql);
+        //         $stmt->bindValue(1, $name);
+        //         $stmt->bindValue(2, $price);
+        //         $stmt->bindValue(3, $image);
+        //         $stmt->bindValue(4, $category);
+               
+        //         $stmt->execute();
+        //     }catch(PDOException $e){
+        //         echo $e->getMessage();
+        //     }
+        // }
+
+        public function updateProduct($productname, $price, $image , $category) {
+            $sql = 'update products set name = ?, price = ? , image = ?, category = ?';
             try{
                 $stmt = $this->conn->prepare($sql);
-                $stmt->bindValue(1, $name);
+                $stmt->bindValue(1, $productname);
                 $stmt->bindValue(2, $price);
-                $stmt->bindValue(3, $category);
-                $stmt->bindValue(4, $image);
-                $stmt->bindValue(5, $isAvailable);
-                $stmt->bindValue(6, $id);
+                $stmt->bindValue(3, $image);
+
+                $stmt->bindValue(4, $category);
+              
     
     
                 $stmt->execute();
@@ -331,5 +357,37 @@
             $stmt->execute();
             return $stmt->fetchAll();
         }
+
+        public function insertCategory($name){
+            $sql = "INSERT INTO category(name) VALUES(?);";
+            
+                $stmt = $this->conn->prepare($sql);
+                $stmt->bindValue(1, $name);
+            $stmt->execute();
     }
+
+    public function deleteProduct($name){
+        $stmt=$this->conn->prepare('delete from products where id = ?');
+        $stmt->bindValue( 1, $name );
+        $stmt->execute();
+        return $stmt->rowCount();
+        // return $stmt->rowCount();
+    }
+
+    public function CheckEmailExist($email){
+        $stmt=$this->conn->prepare('SELECT email FROM users WHERE email = ?');
+        $stmt->bindValue(1, $email);
+        $stmt->execute();
+        return $stmt->rowCount();
+    }
+    
+    public function UsernameExist($username){
+        $stmt=$this->conn->prepare('SELECT username FROM users WHERE username = ?');
+        $stmt->bindValue(1, $username);
+        $stmt->execute();
+        return $stmt->rowCount();
+    }
+    
+
+}
 
