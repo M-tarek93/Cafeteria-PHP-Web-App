@@ -1,6 +1,5 @@
 <?php
 
-session_start();
 
 require_once('databaseHandler.php');
 
@@ -26,8 +25,12 @@ class Register{
         }else{
             $email= $_POST['email'];
             if(! preg_match('/^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/',$email)){
-                $emailErr= $emailErr. " *Wrong E-mail";
-            };
+                $emailErr= $emailErr. " *Wrong E-mail format";
+            }
+            $count= $Datbase->CheckEmailExist($_POST['email']);
+            if($count>=1){
+            $emailErr=" *Email is already exist";
+            
         }
 
         #--------------------Password validation----------------------#
@@ -83,7 +86,7 @@ class Register{
            $file_ext=strtolower(end($ext));
         
            $extensions= array("jpeg","jpg","png");
-           
+           if($file_name!=NULL){
            if(in_array($file_ext,$extensions)=== false){
                $errors[]="extension not allowed, please choose a JPEG or PNG file.";
            }
@@ -96,7 +99,7 @@ class Register{
            }else{
                print_r($errors);
            }
-        }}
+        }}}
         
         #---------------------inserting data after validation----------------#
             if($userNameErr==="" & $emailErr=== "" & $passErr==="" & $confPassErr==="" & $roomErr==="" & $extErr===""){
@@ -120,6 +123,7 @@ class Register{
     }
 }
 
+}
 $regis = new Register();
 $regis->insertconn();
 $db= new databaseHandler();
