@@ -35,6 +35,12 @@
             $stmt->execute();
             return $stmt->fetchAll();
         }
+
+        public function getUserNames(){
+            $stmt=$this->conn->prepare('select username from users');
+            $stmt->execute();
+            return $stmt->fetchAll();
+        }
         
         public function deleteUser($username){
             $stmt=$this->conn->prepare('delete from users where username = ?');
@@ -247,6 +253,11 @@
             return $stmt->fetchAll();
         }
      
+        public function getAllOrdersWithUsername($username){
+            $stmt=$this->conn->prepare('SELECT * FROM orders WHERE username=?');
+            $stmt->execute([$username]);
+            return $stmt->fetchAll();
+        }
         public function getAllOrders(){
             $stmt=$this->conn->prepare('SELECT * FROM orders');
             $stmt->execute();
@@ -295,6 +306,57 @@
             $stmt=$this->conn->prepare('UPDATE orders SET status=? WHERE id= ?');
             $stmt->execute([3,$order_id]);
             return $stmt->rowCount();
+        }
+
+        public function getChecks($from_date,$to_date){
+            $stmt=$this->conn->prepare('SELECT username,id,date,SUM(total_price) AS total_price FROM orders WHERE date BETWEEN ? AND ? GROUP BY username');
+            $stmt->execute([$from_date,$to_date]);
+            return $stmt->fetchAll();
+        }
+        public function getChecks1($user,$from_date,$to_date){
+            $stmt=$this->conn->prepare('SELECT username,id,date,SUM(total_price) AS total_price FROM orders WHERE username=? AND date BETWEEN ? AND ?');
+            $stmt->execute([$user,$from_date,$to_date]);
+            return $stmt->fetchAll();
+        }
+        public function getChecks2(){
+            $stmt=$this->conn->prepare('SELECT username,id,date,SUM(total_price) AS total_price FROM orders GROUP BY username');
+            $stmt->execute();
+            return $stmt->fetchAll();
+        }
+        public function getOrderId($from_date,$to_date){
+            $stmt=$this->conn->prepare('SELECT id FROM orders WHERE date BETWEEN ? AND ?');
+            $stmt->execute([$from_date,$to_date]);
+            return $stmt->fetchAll();
+        }
+        public function getOrderId1($user,$from_date,$to_date){
+            $stmt=$this->conn->prepare('SELECT id FROM orders WHERE username=? AND date BETWEEN ? AND ?');
+            $stmt->execute([$user,$from_date,$to_date]);
+            return $stmt->fetchAll();
+        }
+        public function getAllOrderId(){
+            $stmt=$this->conn->prepare('SELECT id FROM orders');
+            $stmt->execute();
+            return $stmt->fetchAll();
+        }
+        public function getCheckOrder($order_id){
+            $stmt=$this->conn->prepare('SELECT username,date,id,total_price FROM orders WHERE id=?');
+            $stmt->execute([$order_id]);
+            return $stmt->fetchAll();
+        }
+        
+        public function getOrderDetails1($order_id){
+            $x=1;
+            $stmt=$this->conn->prepare('SELECT product_id FROM orders_items WHERE order_id= ?');
+            $stmt->execute([$order_id]);
+            $order_items=array();
+            while ($element=$stmt->fetch() ){
+                $stmt1=$this->conn->prepare('SELECT  name,price,image FROM products WHERE id= ?');
+                $stmt1->execute([$element["product_id"]]);
+                $item=$stmt1->fetchAll();
+                $order_items[$x]=$item;
+                $x++;
+            }
+            return ($order_items);   
         }
 
         public function getCategory($id){

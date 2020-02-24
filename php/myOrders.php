@@ -9,7 +9,7 @@ $user=$_SESSION["username"];
     <meta charset="UTF-8">
     <title>Cafeteria</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css' integrity='sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm' crossorigin='anonymous'>;
+    <link rel='stylesheet' href='../assets/bootstrap/bootstrap.min.css' >;
    </head>
 
 <body>
@@ -23,10 +23,13 @@ $user=$_SESSION["username"];
         <input type="submit" value="submit">
     </form>
     <?php
-    if (isset($_POST['submit'])){
         require_once('databaseHandler.php');
         $db = new databaseHandler();
+
+    if  (isset($_POST["from_date"]) && isset($_POST["to_date"])) {
         $result = $db->getMyOrders($user,$_POST["from_date"],$_POST["to_date"]);
+    }else{
+        $result = $db->getAllOrdersWithUsername($user);
     }
     ?>
     
@@ -44,17 +47,6 @@ $user=$_SESSION["username"];
             let item_status=["Processing","Out for Delivery","Done"];
             <?= json_encode($result) ?>.forEach(myFun);
             function myFun(item,index){
-                let status=""
-                if(item["status"]===1){
-                    status = "Processing";
-                }
-                else if(item["status"]===2){
-                    status = "Out For Delivery";
-                }
-                else if(item["status"]===3){
-                    status = "Done";
-                }
-
                 tr = document.createElement("tr");
                 tr.setAttribute("row_id",item["id"]);
                 tr.innerHTML= "<td>" + item["date"] + "</td>"
