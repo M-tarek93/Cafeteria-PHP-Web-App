@@ -5,16 +5,9 @@
     <title>Cafeteria</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel='stylesheet' href='../assets/bootstrap/bootstrap.min.css' >
+    <link rel="stylesheet" href="../assets/css/orders.css">
     <script src='http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js'></script>
 
-    <style>
-        .hidden {
-        display: none;
-        }
-        table {
-        border-collapse: collapse;
-        }
-    </style>
 </head>
 
 <body>
@@ -97,7 +90,7 @@
                 tr.setAttribute("class","check");
 
                 tr.innerHTML= "<td>" + item["username"] + "</td>"
-                + "<td><button id=" + item["username"] + " class='btn-info' onclick='collapse(this)'" + "</button>+</td>"
+                + "<td><button id=" + item["username"] + " class='btn btn-info' onclick='collapse(this)'" + "</button>+</td>"
                 + "<td>" + item["total_price"] + "</td>";
 
                 table.appendChild(tr);
@@ -116,7 +109,7 @@
 
                         +"<tr>"
                         +"<td>"+item[0]['date']+"</td>"
-                        +"<td><button id=" + item[0]['id'] + " class='btn-info' onclick='collapse(this)'" + "</button>+</td>"
+                        +"<td><button id=" + item[0]['id'] + " class='btn btn-info' onclick='collapse(this)'" + "</button>+</td>"
                         +"<td>"+item[0]['total_price']+"</td>"
 
                         +"</tr></table></td>";

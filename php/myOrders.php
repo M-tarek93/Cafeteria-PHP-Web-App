@@ -9,8 +9,10 @@ $user=$_SESSION["username"];
     <meta charset="UTF-8">
     <title>Cafeteria</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel='stylesheet' href='../assets/bootstrap/bootstrap.min.css' >;
+    <link rel='stylesheet' href='../assets/bootstrap/bootstrap.min.css' >
+    <link rel="stylesheet" href="../assets/css/orders.css">
    </head>
+
 
 <body>
     <h1>My Orders</h1>
@@ -28,9 +30,15 @@ $user=$_SESSION["username"];
 
     if  (isset($_POST["from_date"]) && isset($_POST["to_date"])) {
         $result = $db->getMyOrders($user,$_POST["from_date"],$_POST["to_date"]);
+        $ordersIds = $db->getOrderId1($user,$_POST["from_date"],$_POST["to_date"]);
     }else{
         $result = $db->getAllOrdersWithUsername($user);
+        $ordersIds = $db->getAllOrderIdByUsername($user);
     }
+     $orderDetails=array();
+        foreach ($ordersIds as $order) {
+            array_push($orderDetails,$db->getMyOrderDetails($order['id']));
+        } 
     ?>
     
     <table class="table table-bordered justify-content-center text-center " id="orders_table">
@@ -50,7 +58,7 @@ $user=$_SESSION["username"];
                 tr = document.createElement("tr");
                 tr.setAttribute("row_id",item["id"]);
                 tr.innerHTML= "<td>" + item["date"] + "</td>"
-                + "<td><button class='not_viewd btn btn-info' onclick=" + "view(this," + item["id"] + "); return false;' id=" + item["id"] + ">+</button></td>"
+                + "<td><button class='not_viewd btn btn-info' onclick=" + "collapse(this); return false;' id=" + item["id"] + ">+</button></td>"
                 + "<td>" + item_status[item["status"]-1] + "</td>"
                 + "<td>" + item["total_price"] + "</td>";
                 if(item["status"] == "1"){
@@ -77,65 +85,47 @@ $user=$_SESSION["username"];
             return false;
           });
 
-          function view(element,order_id) {
-            var info = 'oId=' + order_id;
-            $.ajax({
-                type: 'POST',
-                url: 'orderDetails.php',
-                dataType: 'json',
-                data: info,
-                success: function(response){
-                    $('#orders').remove();
-                    let el = document.getElementsByClassName('viewd');
-                    for (let i = 0; i < el.length; i++) {
-                        hide(el[i],el[i].id);
+          order=document.querySelectorAll('[row_id]');
+            let orderDetails=<?= json_encode($orderDetails) ?>;
+            for (let i = 0; i < order.length; i++) {
+                    for (let index = 0; index <  orderDetails.length; index++) {
+                        for (let index2 = 0; index2 < orderDetails[index].length; index2++) {
+                            if(orderDetails[index][index2][0]['order_id']== order[i].getAttribute("row_id")){
+                            tr_order_detail = document.createElement("tr");
+                            tr_order_detail.setAttribute("class","hidden order");
+                            tr_order_detail.setAttribute("name",orderDetails[index][index2][0]['order_id']);
+                            tr_order_detail.innerHTML="<td colspan='3'><table><tr>"
+                            +"<th>Product Name</th>"
+                            +"<th>Product Price</th>"
+                            +"<th>Product Image</th>"+"</tr>"
+
+                            +"<tr>"
+                            +"<td>"+orderDetails[index][index2][0]['name']+"</td>"
+                            +"<td>"+orderDetails[index][index2][0]["price"]+"</td>"
+                            +"<td>" + "<img width='70' height='70' src='../assets/images/products/" + orderDetails[index][index2][0]['image'] + "'></td>"
+
+                            +"</tr></table></td>";
+
+                            order[i].parentNode.insertBefore(tr_order_detail,order[i].nextSibling);
+                        }             
                     }
-                    let order_details_div=document.createElement('div');
-                    // order_details_div.setAttribute("id","orders");
-                    // for (var key in response) {
-                    // let order_item=document.createElement('span');
-                    // let product_name=document.createElement('label');
-                    // let product_image=document.createElement('img');
-                    // let product_price=document.createElement('label');
-                    // product_name.innerHTML=response[key][0]["productname"];
-                    // product_image.setAttribute("src",response[key][0]["image"]);
-                    // product_price.innerHTML="Price: " + response[key][0]["price"] + " LE";
-                    // order_item.appendChild(product_image);
-                    // order_item.appendChild(product_name);
-                    // order_item.appendChild(product_price);
-                    // order_details_div.appendChild(order_item);
-                    // element.setAttribute("class","viewd btn btn-danger");
-                    // element.setAttribute("onclick","hide(this,"+order_id+")");
-                    // element.innerHTML="-";                
-                    let order_details_table =document.createElement('table');
-                    order_details_table.setAttribute("id","orders")
-                    order_details_table.setAttribute("class","table table-bordered justify-content-center text-center");
-                    let order_details_table_headings=document.createElement('tr');
-                    order_details_table_headings.innerHTML="<th>Item Name</th><th>Item Price</th><th>Item Picture</th>";
-                    order_details_table.appendChild(order_details_table_headings);
-                    for (var key in response) {
-                        let order_item=document.createElement('tr');
-                        order_item.innerHTML="<td>"+response[key][0]["name"]+"</td>"+
-                                             "<td>"+response[key][0]["price"]+"</td>"+
-                                             "<td><img src=../assets/images/products/"+response[key][0]["image"]+" height=50px width=50px></td>";
-                        order_details_table.appendChild(order_item);
-                    }
-                    element.closest('table').after(order_details_table);
-                    element.setAttribute("class","viewd btn btn-danger");
-                    element.setAttribute("onclick","hide(this,"+order_id+")");
-                    element.innerHTML="-";  
-                    }
+                           
+                }
+                    
+            }
+            function collapse(cell){
+            target = document.getElementsByName(cell.getAttribute('id'));
+
+            for (let index = 0; index < target.length; index++) {
+                if (target[index].style.display == 'table-row') {
+                    cell.innerHTML = '+';
+                    target[index].style.display = 'none';
+                } else {
+                    cell.innerHTML = '-';
+                    target[index].style.display = 'table-row';
+                }
+            }    
             
-            });
-            return false;
-            };
-
-            function hide(element,order_id){
-                $('#orders').remove();
-                element.setAttribute("class","not_viewd btn btn-info");
-                element.setAttribute("onclick","view(this,"+order_id+")");
-                element.innerHTML="+";
-
             }
         </script>
     </table>
