@@ -327,6 +327,11 @@
             $stmt->execute();
             return $stmt->fetchAll();
         }
+        public function getAllOrderIdByUsername($username){
+            $stmt=$this->conn->prepare('SELECT id FROM orders WHERE username=?');
+            $stmt->execute([$username]);
+            return $stmt->fetchAll();
+        }
         public function getCheckOrder($order_id){
             $stmt=$this->conn->prepare('SELECT username,date,id,total_price FROM orders WHERE id=?');
             $stmt->execute([$order_id]);
