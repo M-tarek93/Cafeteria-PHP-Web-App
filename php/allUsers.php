@@ -19,7 +19,7 @@
     <th>Ext</th><th>Profile Picture</th><th>Role</th><th colspan=2>Action</th></tr>';
     foreach ($result as $user) {
         echo "<tr><td class='align-middle'>" . $user['username']. "</td><td class='align-middle'>" . $user['email']. "</td><td class='align-middle'>" . $user['room']. "</td>
-        <td class='align-middle'>" . $user['ext']. "</td><td class='align-middle'><img class='img-thumbnail rounded' width=200px height=200px src=../assets/images/avatars/" . $user['profile_pic']. ">
+        <td class='align-middle'>" . $user['ext']. "</td><td class='align-middle'><img class='img-thumbnail rounded' width=200px height=200px src=../assets/images/avatars/" . $user['profile_pic'] . ">
         </td><td class='align-middle'>". $user['role']."</td><td class='align-middle'>
         <a href=editUser.php/?username=".$user['username']."&email=".$user['email']."&room=".$user['room']."&ext=".$user['ext']."&role=".$user['role'].">
         <button class='btn btn-primary'>update</button></a></td><td class='align-middle'><a href=deleteUser.php/?username=".$user['username'].">
@@ -27,5 +27,6 @@
     }
     echo '</table>';
 ?>
+<script async id="slcLiveChat" src="https://widget.sonetel.com/SonetelWidget.min.js" data-account-id="206903051"></script>
 </body>
 </html>
