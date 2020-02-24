@@ -283,7 +283,7 @@
             echo (json_encode($order_items));   
         }
         public function getMyOrderDetails($order_id){
-            $stmt=$this->conn->prepare('SELECT product_id FROM orders_items WHERE order_id= ?');
+            $stmt=$this->conn->prepare('SELECT order_id,product_id FROM orders_items WHERE order_id= ?');
             $stmt->execute([$order_id]);
             $products=$stmt->fetchAll();
             $order_items=array();
@@ -291,6 +291,9 @@
                 $stmt=$this->conn->prepare('SELECT  name,price,image FROM products WHERE id= ?');
                 $stmt->execute([$product["product_id"]]);
                 $item=$stmt->fetchAll();
+                foreach($item as $key=>$value) {
+                    $item[$key]['order_id'] = $product['order_id'];
+                }
                 array_push($order_items, $item);
             }
             return $order_items;

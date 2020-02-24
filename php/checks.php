@@ -63,14 +63,11 @@
     $orderDetails=array();
 
     foreach ($ordersIds as $row) {
-        // echo $row['id'];
         array_push($order,$db->getCheckOrder($row['id']));
-        print_r(json_decode($db->getOrderDetails1($row['id'])));
-        // print_r($orderDetails);
-    } 
+        array_push($orderDetails,$db->getMyOrderDetails($row['id']));
+    }
     
 
-    // echo json_encode($order);
 
     ?>
     
@@ -87,12 +84,9 @@
             check=document.getElementsByClassName('check');
 
             <?= json_encode($order) ?>.forEach(displayOrders);
-            order=document.querySelectorAll('[order_row="order"]');
-
-            for (let index = 0; index < $orderDetails.length; index++) {
-                console.log($orderDetails[index]);
-                
-            }
+            order=document.querySelectorAll('[order_id]');
+            let orderDetails=<?= json_encode($orderDetails) ?>;
+    
                 
 
             function displayChecks(item,index){
@@ -122,7 +116,7 @@
 
                         +"<tr>"
                         +"<td>"+item[0]['date']+"</td>"
-                        +"<td><button class='btn-info' onclick='collapse(this)'" + "id=" + item[0]["username"] + "</button>+</td>"
+                        +"<td><button id=" + item[0]['id'] + " class='btn-info' onclick='collapse(this)'" + "</button>+</td>"
                         +"<td>"+item[0]['total_price']+"</td>"
 
                         +"</tr></table></td>";
@@ -132,30 +126,36 @@
                 }                
                 };
 
-            // function displayOrderDetails(item,index){
-            //     console.log(item['name'])
-            //     for (let index = 0; index < order.length; index++) {
-            //         if(item[0]['id']==order[index].getAttribute("order_id")){
-            //             tr_order_detail = document.createElement("tr");
-            //             tr_order_detail.setAttribute("class","hidden order");
-            //             tr_order_detail.setAttribute("name",item[0]['id']);
-            //             tr_order_detail.innerHTML="<td colspan='3'><table><tr>"
-            //             +"<th>Product Name</th>"
-            //             +"<th>Product Price</th>"
-            //             +"<th>Product Image</th>"+"</tr>"
 
-            //             +"<tr>"
-            //             +"<td>"+item[0]['name']+"</td>"
-            //             +"<td>"+item[0]["price"]+"</td>"
-            //             +"<td>" + "<img src='../assets/images/products/" + item[0]['image'] + "'></td>"
+                for (let i = 0; i < order.length; i++) {
+                    for (let index = 0; index <  orderDetails.length; index++) {
+                    
+                    for (let index2 = 0; index2 < orderDetails[index].length; index2++) {
+                        if(orderDetails[index][index2][0]['order_id']== order[i].getAttribute("order_id")){
+                        tr_order_detail = document.createElement("tr");
+                        tr_order_detail.setAttribute("class","hidden order");
+                        tr_order_detail.setAttribute("name",orderDetails[index][index2][0]['order_id']);
+                        tr_order_detail.innerHTML="<td colspan='3'><table><tr>"
+                        +"<th>Product Name</th>"
+                        +"<th>Product Price</th>"
+                        +"<th>Product Image</th>"+"</tr>"
 
-            //             +"</tr></table></td>";
+                        +"<tr>"
+                        +"<td>"+orderDetails[index][index2][0]['name']+"</td>"
+                        +"<td>"+orderDetails[index][index2][0]["price"]+"</td>"
+                        +"<td>" + "<img width='70' height='70' src='../assets/images/products/" + orderDetails[index][index2][0]['image'] + "'></td>"
 
-            //             order[index].parentNode.insertBefore(tr_order_detail,order[index].nextSibling);
-            //         }                    
-            //     }    
+                        +"</tr></table></td>";
 
-            // }
+                        order[i].parentNode.insertBefore(tr_order_detail,order[i].nextSibling);
+                    }             
+                    }
+                           
+                }
+                    
+                }
+                    
+
             function collapse(cell){
             target = document.getElementsByName(cell.getAttribute('id'));
 
