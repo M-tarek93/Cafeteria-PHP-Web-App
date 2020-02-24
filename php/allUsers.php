@@ -18,7 +18,13 @@
     echo '<table class="table table-bordered justify-content-center text-center "><tr class="thead-dark"><th>Username</th><th>Email</th><th>Room</th>
     <th>Ext</th><th>Profile Picture</th><th>Role</th><th colspan=2>Action</th></tr>';
     foreach ($result as $user) {
-        echo "<tr><td class='align-middle'>" . $user['username']. "</td><td class='align-middle'>" . $user['email']. "</td><td class='align-middle'>" . $user['room']. "</td>
+        echo "<tr><td class='align-middle'>" . 
+        $user['username'].
+         "</td><td class='align-middle'>" .
+          $user['email']. 
+          "</td><td class='align-middle'>" .
+           $user['room'].
+            "</td>
         <td class='align-middle'>" . $user['ext']. "</td><td class='align-middle'><img class='img-thumbnail rounded' width=200px height=200px src=../assets/images/avatars/" . $user['profile_pic'] . ">
         </td><td class='align-middle'>". $user['role']."</td><td class='align-middle'>
         <a href=editUser.php/?username=".$user['username']."&email=".$user['email']."&room=".$user['room']."&ext=".$user['ext']."&role=".$user['role'].">

@@ -19,7 +19,7 @@
                     <div class="form-group row">
                         <label for="" class="offset-sm-1 col-sm-2 control-label">Product</label>
                         <div class="col-sm-6">
-                            <input class="form-control" type="text" name="name" placeholder="enter product name" pattern="[a-zA-Z]{1,}" required/>
+                            <input class="form-control" type="text" name="name" placeholder="enter product name" required/>
                         </div>
                     </div>
                     <div class="form-group row">

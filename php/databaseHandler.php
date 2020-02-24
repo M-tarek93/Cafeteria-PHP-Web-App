@@ -24,6 +24,7 @@
             } catch (\PDOException $e) {
                 throw new \PDOException($e->getMessage(), (int)$e->getCode());
             }
+            return $this->conn ;
         }
 
         public function disconnectDB(){
@@ -214,38 +215,23 @@
             $stmt->bindParam(':image', $image);
             $stmt->execute();
         }
-        // public function updateProduct($name, $price,$image ,$category) {
-        //     $sql = 'update products set name = ? , price = ? , image = ? , category = ? where name = ?';
-        //     try{
-        //         $stmt = $this->conn->prepare($sql);
-        //         $stmt->bindValue(1, $name);
-        //         $stmt->bindValue(2, $price);
-        //         $stmt->bindValue(3, $image);
-        //         $stmt->bindValue(4, $category);
-               
-        //         $stmt->execute();
-        //     }catch(PDOException $e){
-        //         echo $e->getMessage();
-        //     }
-        // }
-
-        public function updateProduct($productname, $price, $image , $category) {
-            $sql = 'update products set name = ?, price = ? , image = ?, category = ?';
+     
+        public function updateProduct($id, $name, $price, $image, $category, $isAvailable=0) {
+            $sql = 'update products set name = ?, price = ?, image = ?, category = ?, isAvailable = ? where id = ?';
             try{
                 $stmt = $this->conn->prepare($sql);
-                $stmt->bindValue(1, $productname);
+                $stmt->bindValue(1, $name);
                 $stmt->bindValue(2, $price);
                 $stmt->bindValue(3, $image);
-
                 $stmt->bindValue(4, $category);
-              
-    
-    
+                $stmt->bindValue(5, $isAvailable);
+                $stmt->bindValue(6, $id);
                 $stmt->execute();
             }catch(PDOException $e){
                 echo $e->getMessage();
             }
         }
+
      
         public function getMyOrders($username,$from_date,$to_date){
             $stmt=$this->conn->prepare('SELECT id,date,status,total_price FROM orders WHERE username=? AND date BETWEEN ? AND ?');
