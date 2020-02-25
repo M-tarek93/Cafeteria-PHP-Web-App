@@ -1,7 +1,9 @@
 body{
-    background-image: url("../assets/images/backg.png");
+    background-image: url("../images/backg.png");
     background-position: center center;
-    background-repeat: repeat-y;	
+    background-attachment: fixed;
+    background-size: cover;
+    background-repeat: no-repeat;	
     background-color: burlywood;
     color: burlywood ;
     height: 600px;

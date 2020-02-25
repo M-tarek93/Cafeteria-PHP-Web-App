@@ -1,3 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reset Pass | Cafeteria</title>
+    <link rel="stylesheet" href="../css/forgetPass.css">
+</head>
+<body>
+        <header>
+            <ul class="navLinks">
+                <li><a href="#">Home</a></li>
+                <li><a href="../php/allProducts.php">Products</a></li>
+                <li><a href="../php/allUsers.php">Users</a></li>
+                <li><a href="#">Manual Order</a></li>
+                <li><a href="../php/checks.php">Checks</a></li>
+            </ul>
+        </header>
 <?php
 require_once('databaseHandler.php');
 $database = new databaseHandler();
@@ -37,7 +55,7 @@ if(empty($_POST['email'])){
 }
 
 #-----------------------------Check if Password is empty----------------------------#
-if(empty($_POST["password"])){
+if(empty($_POST['password'])){
     $pass_err= " *Please return and enter your password.";
     echo $pass_err."<br>";
 } else{
@@ -50,7 +68,8 @@ if(empty($_POST["password"])){
 
 #------------------------------Check if confPassword is empty------------------------#
 if(empty($_POST["confpassword"])){
-    echo " *Please return and enter your password.";
+    $confpass_err= " *Please return and enter your confirmation password.";
+    echo $confpass_err;
 } else{
         #---------------to make sure that confirm Password equal password---------------------#
         $confpassword = $_POST["confpassword"];
@@ -64,5 +83,16 @@ if(empty($_POST["confpassword"])){
     if($email_err==="" & $pass_err==="" & $confpass_err==="" & $valid_err==="" & $username_err===""){
     $database->resetPass($_POST['password'],$_POST['username']);
     $database->disconnectDB();
-    echo" *Your password has been changed successfully"."<br>"."<a href='login.html>Login</a>";
+    echo" <div style='margin-left:13% ;
+    padding-top: 55px;
+    background-color: black;
+    opacity: 80%;
+    width:450px;
+    height:250px;
+    margin:auto;
+    margin-top:25px;
+    text-align:center;
+    '><h2>*Your password has been changed successfully</h2> <br> <a style='color:white;' href='login.html'><h3>Login</h3></a>";
     }
+?>
+</body>

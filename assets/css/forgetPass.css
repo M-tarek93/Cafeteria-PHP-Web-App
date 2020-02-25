@@ -1,9 +1,9 @@
 body{
     background-image: url("../images/backg.png");
     background-position: center center;
-    background-repeat: no-repeat;	
     background-attachment: fixed;
     background-size: cover;
+    background-repeat: no-repeat;	
     background-color: burlywood;
     color: burlywood ;
     height: 600px;
@@ -25,42 +25,19 @@ body{
     background-color:burlywood;
     color:black;
   }
-
-  p a{
-      text-decoration: none;
-      color:burlywood;
-      margin-left: 40px;
-      font-weight: bold;
-      -webkit-text-stroke-width: .3px;
-      -webkit-text-stroke-color: black;
-  }
-  p a:hover{
-    -webkit-text-stroke-width: .9px;
-    -webkit-text-stroke-color:burlywood;
-    color:wheat;
-    font-weight: bolder;
-    font-size: larger;
-  }
-.dhacc{
-    margin-left: 38px;
-}
-
-form{
+  form{
     margin-left:13% ;
     padding-top: 8px;
     background-color: black;
     opacity: 80%;
     width: 400px;
-    height: 100%;
+    height: 250px;
     margin: auto;
     margin-top: 40px;
     padding-left: 10px;
     border: burlywood solid .2px;
 }
-.form-controle{
-    margin-left: 20px;
-    width:65%;   
-}
+
 .navLinks{
     list-style-type: none;
     margin-left: 9.3%;
@@ -68,7 +45,6 @@ form{
     overflow: hidden;
     background-color:black;
     width: 81.2%;
-
   }
 
 .label{
@@ -81,13 +57,10 @@ form{
     margin-top: 2%;
 }
 .email{
-    margin-left: 38px;
-    width:53%;
+    margin-left: 25%;
+    width:50%;
 }
-.pass{
-    margin-left: 15px;
-    width:53%;
-}
+
 .btn{
     display:inline-block;
     padding:0.4em 1.7em;
@@ -109,4 +82,16 @@ box-shadow:inset 0 0.6em 2em -0.3em rgba(0,0,0,0.15),inset 0 0 0em 0.05em rgba(2
 .btn:hover{
     color:wheat;
     background-color: black;
+}
+.user_name{
+    margin-left: 15.2%;
+    width:50%;
+}
+.pass{
+    margin-left: 18%;
+    width:50%;
+}
+.confpass{
+    margin-left: 2%;
+    width:50%;
 }
