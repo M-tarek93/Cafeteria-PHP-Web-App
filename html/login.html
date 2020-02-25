@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="../css/login.css">
-    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <title>Login | Cafeteria </title>
 </head>
 <body>
@@ -24,23 +24,24 @@
         </header>
     <section>
         <div>
-        <form method="post" action="../php/loginHandler.php" >
+        <form method="post" id="loginForm">
             <h1 class="cafHead">Login</h1>
             <div class="fields">
                 <span class="label">Email</span>
-                <input type="email" name="email" class="email">
+                <input type="email" name="email" class="email" id="emailInput">
             </div>
             <div class="fields">
                 <span class="label">Password</span>
-                <input type="password" name="password" class="pass">
+                <input type="password" name="password" class="pass" id="passwordInput">
             </div>
             <div class="form-group">
-                <input type="submit" class="btn"  value="Login">
+                <input type="submit" class="btn"  value="Login" id="submitButton">
             </div>
             <p><a href="forgetPass.html">Forget Password?</a></p>
             <p class="dhacc">Don't have an account? <a href="register.html">Sign up</a></p>
         </form>
         </div>
     </section>
+    <script src="../JS/login.js"></script>
 </body>
 </html>

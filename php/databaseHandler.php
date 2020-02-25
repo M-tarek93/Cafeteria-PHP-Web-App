@@ -367,7 +367,7 @@
             }
             return ($order_items);   
         }
-        
+
 
         public function getCategory($id){
             $stmt = $this->conn->prepare('select name from category where id = ?');
@@ -411,6 +411,16 @@
         return $stmt->rowCount();
     }
     
+    public function CheckLogin($email,$password){
+        $stmt=$this->conn->prepare('SELECT * FROM users WHERE email =? AND password =?');
+        $stmt->execute([$email,$password]);
+        return $stmt->rowCount();
+    }
 
+    public function getUserByEmail($email){
+        $stmt=$this->conn->prepare('SELECT username,role FROM users WHERE email=?');
+        $stmt->execute([$email]);
+        return $stmt->fetch();
+    }
 }
 
