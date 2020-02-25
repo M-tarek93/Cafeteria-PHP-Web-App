@@ -1,0 +1,112 @@
+body{
+    background-image: url("../img/backg.png");
+    background-position: center center;
+    background-repeat: no-repeat;	
+    background-attachment: fixed;
+    background-size: cover;
+    background-color: burlywood;
+    color: burlywood ;
+    height: 600px;
+}
+
+.navLinks li {
+    float: left;
+  }
+  
+.navLinks li a {
+    display: block;
+    color: burlywood;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+  }
+  
+ .navLinks li a:hover {
+    background-color:burlywood;
+    color:black;
+  }
+
+  p a{
+      text-decoration: none;
+      color:burlywood;
+      margin-left: 40px;
+      font-weight: bold;
+      -webkit-text-stroke-width: .3px;
+      -webkit-text-stroke-color: black;
+  }
+  p a:hover{
+    -webkit-text-stroke-width: .9px;
+    -webkit-text-stroke-color:burlywood;
+    color:wheat;
+    font-weight: bolder;
+    font-size: larger;
+  }
+.dhacc{
+    margin-left: 38px;
+}
+
+form{
+    margin-left:13% ;
+    padding-top: 8px;
+    background-color: black;
+    opacity: 80%;
+    width: 400px;
+    height: 100%;
+    margin: auto;
+    margin-top: 40px;
+    padding-left: 10px;
+    border: burlywood solid .2px;
+}
+.form-controle{
+    margin-left: 20px;
+    width:65%;   
+}
+.navLinks{
+    list-style-type: none;
+    margin-left: 9.3%;
+    padding: 0;
+    overflow: hidden;
+    background-color:black;
+    width: 81.2%;
+
+  }
+
+.label{
+    width: 200px;
+    margin-bottom: 10%;
+}
+.fields{
+    margin-bottom: 7px;
+    margin-left: 10%;
+    margin-top: 2%;
+}
+.email{
+    margin-left: 38px;
+    width:53%;
+}
+.pass{
+    margin-left: 15px;
+    width:53%;
+}
+.btn{
+    display:inline-block;
+    padding:0.4em 1.7em;
+    margin:0em 3.1em 0em 17.3em;
+    border-radius:0.2em;
+    box-sizing: border-box;
+    text-decoration:none;
+    font-family:'Roboto',sans-serif;
+    font-weight:400;
+    color:black;
+    background-color:wheat;
+    box-shadow:inset 0 -0.6em 1em -0.35em rgba(7, 7, 7, 0.17),inset 0 0.6em 2em -0.3em rgba(255,255,255,0.15),inset 0 0 0em 0.05em rgba(255,255,255,0.12);
+    text-align:center;
+    position:relative;
+}
+.btn:active{
+box-shadow:inset 0 0.6em 2em -0.3em rgba(0,0,0,0.15),inset 0 0 0em 0.05em rgba(255,255,255,0.12);
+}
+.btn:hover{
+    color:wheat;
+    background-color: black;
+}
