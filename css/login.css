@@ -1,7 +1,9 @@
 body{
     background-image: url("../img/backg.png");
     background-position: center center;
-    background-repeat: repeat-y;	
+    background-repeat: no-repeat;	
+    background-attachment: fixed;
+    background-size: cover;
     background-color: burlywood;
     color: burlywood ;
     height: 600px;
@@ -49,7 +51,7 @@ form{
     background-color: black;
     opacity: 80%;
     width: 400px;
-    height: 250px;
+    height: 100%;
     margin: auto;
     margin-top: 40px;
     padding-left: 10px;
