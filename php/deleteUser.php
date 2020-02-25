@@ -2,9 +2,8 @@
 try {
     require_once('databaseHandler.php');
     $db = new databaseHandler();
-    $db->deleteUser($_GET['username']);
+    $db->deleteUser($_POST['username']);
     $db->disconnectDB();
-    header("Location: ../allUsers.php");
 }
 catch(PDOException $e)
 {
