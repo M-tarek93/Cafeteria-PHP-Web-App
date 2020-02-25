@@ -4,58 +4,56 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="../css/register.css">
+    <link rel="stylesheet" href="../css/adduser.css">
     <title>Register | Cafeteria</title>
 </head>
 <body>
     <header>
-        <span class="navLinks">
-            <a href="#">Home</a>
-            <span>|</span>
-            <a href="#">Products</a>
-            <span>|</span>
-            <a href="#">Users</a>
-            <span>|</span>
-            <a href="#">Manual Order</a>
-            <span>|</span>
-            <a href="#">Checks</a>
-        </span>
+        <ul class="navLinks">
+            <li><a href="#">Home</a></li>
+            <li><a href="../php/allProducts.php">Products</a></li>
+            <li><a href="../php/allUsers.php">Users</a></li>
+            <li><a href="#">Manual Order</a></li>
+            <li><a href="../php/checks.php">Checks</a></li>
+        </ul>
     </header>
     <section >
-        <h1 class="regHead">Register</h1>
+        
     <div>
+        
         <form action="../php/registerHandler.php" method="post" enctype="multipart/form-data">
-            <div>
+            <h1 class="regHead">Register</h1>
+            <div class="fields" id="name">
                 <span class="label">Name</span>
-                <input type="text" name="nameuser">
+                <input type="text" name="nameuser" class="username">
             </div>
-            <div>
+            <div class="fields">
                 <span class="label">Email</span>
-                <input type="email" name="email">
+                <input type="email" name="email" class="email">
             </div>
-            <div>
+            <div class="fields">
                 <span class="label">Password</span>
-                <input type="password" name="password">
+                <input type="password" name="password" class="pass">
             </div>
-            <div>
+            <div class="fields">
                 <span class="label" name="confpasslabel"> Confirm Password</span>
-            <input type="password" name="confpass">
+            <input type="password" name="confpass" class="conpass">
             </div>
-            <div>
+            <div class="fields">
                 <span class="label">Room No.</span>
-                <input type="number" name="roomNum">
+                <input type="number" name="roomNum" class="romnum">
             </div>
-            <div>
+            <div class="fields">
                 <span class="label">Ext.</span>
-                <input type="text" name="ext">
+                <input type="text" name="ext" class="ext">
             </div>
-            <div>
+            <div class="fields" id='file'>
                 <span class="label">Profile picture</span>
                 <input type="file" name="file" value="browse">
                 <input type="hidden" name="MAX_FILE_SIZE" value="1000000">
             </div>
-            <div>
-                <button type="submit">Submit</button>
+            <div class="fields" id="but" style="margin-right: 5%;">
+                <button type="submit" style="margin:0; margin-top: 5%;">Submit</button>
                 <button type="reset">Reset</button>
             </div>
         </form>

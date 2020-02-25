@@ -1,4 +1,24 @@
-<?php
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="../css/adduser.css">
+    <title>Add User | Cafeteria</title>
+</head>
+<body>
+    <header>
+        
+    <ul class="navLinks">
+                <li><a href="#">Home</a></li>
+                <li><a href="../php/allProducts.php">Products</a></li>
+                <li><a href="../php/allUsers.php">Users</a></li>
+                <li><a href="#">Manual Order</a></li>
+                <li><a href="../php/checks.php">Checks</a></li>
+            </ul>
+    </header>
+    <?php
 
 require_once('databaseHandler.php');
 
@@ -107,8 +127,17 @@ class AddUser{
             $Datbase->insertUser($userName,$password, $email,$roomNum, $exten, "NOT EXIST", $role);        
                 }else{
             $Datbase->insertUser($userName,$password, $email,$roomNum, $exten, $_FILES['file']['name'], $role);}
-            echo $userName." has been added successfully"."<br>"."<a href='#'> Return to Home </a>";
-            }else{
+            echo "<div style='margin-left:13% ;
+            padding-top: 55px;
+            background-color: black;
+            opacity: 80%;
+            width:450px;
+            height:250px;
+            margin:auto;
+            margin-top:25px;
+            text-align:center;
+            '><h2> $userName has been added successfully</h2><br>"."<a style='color:white;' href='#'><h3> Return to Home</h3> </a></div>";
+        }else{
                 echo "*********************** ERRORS PAGE ***********************<br>";
                 echo $userNameErr."<br>";
                 echo $emailErr."<br>";
@@ -126,3 +155,5 @@ $addUsr = new AddUser();
 $addUsr->insertconn();
 $db= new databaseHandler();
 $db->disconnectDB();
+?>
+    </body>

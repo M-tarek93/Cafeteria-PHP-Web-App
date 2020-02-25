@@ -9,62 +9,60 @@
 </head>
 <body>
     <header>
-        <span class="navLinks">
-            <a href="#">Home</a>
-            <span>|</span>
-            <a href="#">Products</a>
-            <span>|</span>
-            <a href="#">Users</a>
-            <span>|</span>
-            <a href="#">Manual Order</a>
-            <span>|</span>
-            <a href="#">Checks</a>
-        </span>
-        <span class="userhead">
+        
+        <ul class="navLinks">
+            <li><a href="#">Home</a></li>
+            <li><a href="../php/allProducts.php">Products</a></li>
+            <li><a href="../php/allUsers.php">Users</a></li>
+            <li><a href="#">Manual Order</a></li>
+            <li><a href="../php/checks.php">Checks</a></li>
+        </ul>
+        <!-- <label for="user"><php? echo "$_SESSION[‘username’]" ?></label> -->
+        <!-- <span class="userhead">
             <img src="../images/user.png" class="userphoto">
             <h4 class="username" class="username">Admin</h4>
-        </span>
+        </span> -->
     </header>
     <section >
-        <h1 class="addUserhead">Add user</h1>
     <div>
         <form action="../php/adduserHandler.php" method="post" enctype="multipart/form-data">
-            <div>
+            <h1 class="addUserhead">Add user</h1>
+            <div class="fields" id="name">
                 <span class="label">Name</span>
-                <input type="text" name="nameuser">
+                <input type="text" name="nameuser" class="username">
             </div>
-            <div>
+            <div class="fields">
                 <span class="label">Email</span>
-                <input type="email" name="email">
+                <input type="email" name="email" class="email">
             </div>
-            <div>
+            <div class="fields">
                 <span class="label">Password</span>
-                <input type="password" name="password">
+                <input type="password" name="password" class="pass">
             </div>
-            <div>
+            <div class="fields">
                 <span class="label" name="confpasslabel"> Confirm Password</span>
-            <input type="password" name="confpass">
+            <input type="password" name="confpass" class="conpass">
             </div>
-            <div>
+            <div class="fields">
                 <span class="label">Room No.</span>
-                <input type="number" name="roomNum">
+                <input type="number" name="roomNum" class="romnum">
             </div>
-            <div>
+            <div class="fields">
                 <span class="label">Ext.</span>
-                <input type="text" name="ext">
+                <input type="text" name="ext" class="ext">
             </div>
-            <div>
+            <div class="fields">
                 <input type="radio" name="role" required value="0">
                 <span class="label">User</span>
                 <input type="radio" name="role"  required value="1">
                 <span class="label">Admin</span>
             </div>
-            <div>
+            <div class="fields" id='file'>
                 <span class="label">Profile picture</span>
                 <input type="file" name="file" value="browse">
                 <input type="hidden" name="MAX_FILE_SIZE" value="1000000">
             </div>
-            <div>
+            <div class="fields" id="but" style="margin-right: 5%;">
                 <button type="submit">Submit</button>
                 <button type="reset">Reset</button>
             </div>

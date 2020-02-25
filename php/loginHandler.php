@@ -1,3 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="../css/adduser.css">
+    <title>Welcome | Cafeteria</title>
+</head>
+<body>
+    <header>
+            <ul class="navLinks">
+                <li><a href="#">Home</a></li>
+                <li><a href="../php/allProducts.php">Products</a></li>
+                <li><a href="../php/allUsers.php">Users</a></li>
+                <li><a href="#">Manual Order</a></li>
+                <li><a href="../php/checks.php">Checks</a></li>
+            </ul>
+    </header>
 <?php
 session_start();
 
@@ -49,7 +68,16 @@ function checkLogin (){
             $_SESSION['role']=$roleString;
             //var_dump($_SESSION);
             //echo "<br>".$_SESSION['username'];
-                echo "welcome back ".$userString." :)<br>"."<a href='#'>Go to Home page</a>";
+                echo "<div style='margin-left:13% ;
+                padding-top: 55px;
+                background-color: black;
+                opacity: 80%;
+                width:450px;
+                height:250px;
+                margin:auto;
+                margin-top:25px;
+                text-align:center;
+                '><h2>welcome back $userString :)</h2><br><h3><a style='color:white;' href='../php/home.php'>Go to Home page</a></h3></div>";
                 //header("location: homepage.html");
             }
 }
