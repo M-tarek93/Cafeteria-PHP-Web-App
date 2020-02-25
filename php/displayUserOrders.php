@@ -35,7 +35,7 @@
                             <form action="InsertOrder.php" id="orderForm" method="POST">
                                 
                                 <?php 
-                                    if( $_SESSION['role'] == 1){
+                                    // if( $_SESSION['role'] == 1){
                                         echo "<select name='username'>";
                                         echo "<option value=''>Choose a user</option>";
                                         $db = new databaseHandler();
@@ -44,7 +44,7 @@
                                             echo "<option value='" . $user['username'] . "'>" . $user['username'] . "</option>";
                                         }
                                         echo "</select>";
-                                    }
+                                    // }
                                 ?>
 
                                 <select name="room" id="room">
