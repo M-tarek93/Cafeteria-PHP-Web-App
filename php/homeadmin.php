@@ -1,3 +1,11 @@
+<?php session_start();
+//if ($_SESSION['role']!="1"){
+//    header("Location: ../html/login.html");
+//}
+    require_once('databaseHandler.php');
+    $db = new databaseHandler();
+    $image = $db->getUserImage($_SESSION['username']);
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -22,6 +30,9 @@
                <div class="logandreg">
                 <li><a href="../php/logout.php">Log out</a></li>
                 <li><a href="adduser.html">Add User</a></li>
+                <li><a href="../php/logout.php">Log out</a></li>
+                   <li> <img width='700' height='700' src="../assets/images/avatars/<?=$image[0]['profile_pic']?>" class="userphoto">
+                     <h4 class="username" class="username"><?= $_SESSION['username']?></h4></li>
                 </div>
             </ul>
             <!-- <span class="userhead">

@@ -422,5 +422,10 @@
         $stmt->execute([$email]);
         return $stmt->fetch();
     }
+    public function getUserImage($user){
+        $stmt=$this->conn->prepare('SELECT profile_pic FROM users WHERE username=?');
+        $stmt->execute([$user]);
+        return $stmt->fetchAll();
+    }
 }
 
