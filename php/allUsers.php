@@ -6,10 +6,25 @@
     <link rel="shortcut icon" type="image/x-icon" href="../assets/images/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="../assets/css/adduser.css">
     <link rel="stylesheet" href="style.css">
-</head>
+    <link rel="stylesheet" href="../assets/css/home.css">
 
 <body>
+header>
+        
+        <ul class="navLinks">
+                <li><a href="home.html">Home</a></li>
+                <li><a href="../php/allProducts.php">Products</a></li>
+                <li><a href="../php/allUsers.php">Users</a></li>
+                <li><a href="../php/InsertOrder.php">Manual Order</a></li>
+                <li><a href="../php/currentOrders.php">Current Orders</a></li>
+                <li><a href="../php/checks.php">Checks</a></li>
+                <div class="logandreg">
+                    <li><a href="../php/logout.php">Log out</a></li>
+                </div>
+        </ul>
+    </header>
     <h1 class="col-5">All Users</h1>
     <script src='http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js'></script>
     <script>

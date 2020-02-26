@@ -1,0 +1,63 @@
+body{
+    background-image: url("../images/backg.png");
+    background-position: center center;
+    background-attachment: fixed;
+    background-size: cover;
+    background-repeat: no-repeat;	
+    background-color: burlywood;
+    color: burlywood ;
+    height: 600px;
+}
+.navLinks{
+    list-style-type: none;
+    margin-left: 9.3%;
+    padding: 0;
+    overflow: hidden;
+    background-color: rgb(8, 8, 8);
+    width: 81.2%;
+
+  }
+  .navLinks li {
+    float: left;
+  }
+  
+.navLinks li a {
+    display: block;
+    color: burlywood;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+  }
+  
+ .navLinks li a:hover {
+    background-color:burlywood;
+    color:black;
+  }
+  .logandreg{
+      margin-left: 80%;
+  }
+  .container{
+    background-color: black;
+    opacity: 80%;
+    width: 80%;
+    height: 20%;
+    padding-top: 1%;
+  }
+.con2{
+  background-color: black;
+  opacity: 80%;
+  width: 80%;
+  height: 20%;
+  margin:auto;
+}
+.single-menu{
+  display: inline-table;
+}
+
+img{
+  width:55%;
+  height: 110px;
+}
+.milk{
+  width: 20%;
+}

@@ -5,17 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="../assets/css/adduser.css">
+    <link rel="stylesheet" href="../assets/css/home.css">
     <title>Add User | Cafeteria</title>
 </head>
 <body>
     <header>
         
         <ul class="navLinks">
-            <li><a href="#">Home</a></li>
-            <li><a href="../php/allProducts.php">Products</a></li>
-            <li><a href="../php/allUsers.php">Users</a></li>
-            <li><a href="#">Manual Order</a></li>
-            <li><a href="../php/checks.php">Checks</a></li>
+                <li><a href="homeadmin.html">Home</a></li>
+                <li><a href="../php/allProducts.php">Products</a></li>
+                <li><a href="../php/allUsers.php">Users</a></li>
+                <li><a href="../php/InsertOrder.php">Manual Order</a></li>
+                <li><a href="../php/currentOrders.php">Current Orders</a></li>
+                <li><a href="../php/checks.php">Checks</a></li>
+                <div class="logandreg">
+                    <li><a href="../php/logout.php">Log out</a></li>
+                </div>
         </ul>
         <!-- <label for="user"><php? echo "$_SESSION[‘username’]" ?></label> -->
         <!-- <span class="userhead">
@@ -139,7 +144,7 @@
     </script>
     <div>
         <form action="../php/registerHandler.php" method="post" enctype="multipart/form-data">
-            <h1 class="regHead">Register</h1>
+            <h1 class="regHead">Add User</h1>
             <div class="fields" id="username">
                 <span class="label">Username</span>
                 <input type="text" name="username" class="username" onfocusout="checkUsername()">

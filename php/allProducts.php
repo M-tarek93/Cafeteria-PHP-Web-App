@@ -7,10 +7,21 @@
     <link rel="shortcut icon" type="image/x-icon" href="../assets/images/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="../assets/css/adduser.css">
     <link rel="stylesheet" type="text/css" media="screen" href="../../assets/css/styles.css" />
 </head>
 
 <body>
+<header>
+            <ul class="navLinks">
+                <li><a href="home.html">Home</a></li>
+                <li><a href="../php/allProducts.php">Products</a></li>
+                <li><a href="../php/allUsers.php">Users</a></li>
+                <li><a href="../php/InsertOrder.php">Manual Order</a></li>
+                <li><a href="../php/currentOrders.php">Current Orders</a></li>
+                <li><a href="../php/checks.php">Checks</a></li>
+        </ul>
+        </header>
     <main class="admin-all-products">
         <section class="main-padding">
             <div class="container">
@@ -50,7 +61,7 @@
                         echo '<table class="table table-bordered justify-content-center text-center"><tr class="thead-dark"><th>Product Name</th><th>price</th><th>image</th>
                         <th>Category</th><th>Availability</th><th colspan=2>Action</th></tr>';
                         foreach ($allProducts as $product) {
-                            echo "<tr><td class='align-middle'>" . $product['name']. "</td>
+                            echo "<tr style='color:white';><td class='align-middle'>" . $product['name']. "</td>
                             <td class='align-middle'>" . $product['price']. "$</td>
                             <td class='align-middle'>
                             <img class='img-thumbnail rounded' width=200px height=200px src = ../assets/images/products/". $product['image']. ">
