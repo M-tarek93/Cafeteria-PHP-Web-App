@@ -1,4 +1,8 @@
-
+<?php session_start();
+if ($_SESSION['role']!="1"){
+   header("Location: ../html/login.html");
+    }
+?>
 
 <h1>Add Category</h1>
                 <form action='addCategory.php' method="POST" enctype="multipart/form-data">

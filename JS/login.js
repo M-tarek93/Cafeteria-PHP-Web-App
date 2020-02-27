@@ -24,7 +24,13 @@ $('#submitButton').on('click',function(e){
       success: function(data) {
         if(data.status == 'success'){
             $('#submitButton').after("<p style='color:green'>Welcome Back!<br>Redirecting you soon!</p>")
-            setTimeout(function(){ window.location.href = "../php/myOrders.php"; }, 3000);
+            setTimeout(function(){ 
+                if(data.role == 1){
+                window.location.href = "../php/homeadmin.php"; 
+                }else if(data.role == 0){
+                window.location.href = "../php/homeuser.php"; 
+                }
+            }, 2000);
         }else if(data.status == 'error_login_failed'){
             alert("Wrong email & password combination!");
         }

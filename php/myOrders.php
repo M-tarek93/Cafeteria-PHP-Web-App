@@ -1,4 +1,4 @@
-<?php
+    <?php
 session_start();
 if(empty($_SESSION["username"])){
     header("Location: ../html/login.html");
@@ -21,7 +21,7 @@ $user=$_SESSION["username"];
     <header>
     <ul class="navLinks">
                 <li><a href="homeuser.php">Home</a></li>
-                <li><a href="myOrders.php">MY Orders</a></li>
+                <li><a href="myOrders.php">My Orders</a></li>
                 <div class="logandreg">
                 <li><a   href="../php/logout.php">Log Out</a></li>
                 </div>

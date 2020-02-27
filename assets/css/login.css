@@ -46,14 +46,14 @@ body{
 }
 
 form{
-    margin-left:13% ;
-    padding-top: 8px;
+    /* margin-left:13% ; */
+    /* padding-top: 8px; */
     background-color: black;
     opacity: 80%;
     width: 400px;
     height: 100%;
     margin: auto;
-    margin-top: 40px;
+    margin-top: 12%;
     padding-left: 10px;
     border: burlywood solid .2px;
 }

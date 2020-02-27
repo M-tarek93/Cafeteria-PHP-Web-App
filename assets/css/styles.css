@@ -1,7 +1,9 @@
 .main-padding {
     padding: 40px 0;
 }
-
+.logandreg{
+    margin-left: 80%;
+}
 .main-padding:first-of-type {
     margin-top: 66px;
 }

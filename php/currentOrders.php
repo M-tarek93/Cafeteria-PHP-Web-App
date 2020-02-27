@@ -1,8 +1,8 @@
-// <?php session_start();
-//if ($_SESSION['role']!="1"){
-//    header("Location: ../html/login.html");
-//}
-//?>
+ <?php session_start();
+if ($_SESSION['role']!="1"){
+   header("Location: ../html/login.html");
+    }
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,16 +14,16 @@
     <link rel="stylesheet" href="../assets/css/home.css">
    </head>
    <ul class="navLinks">
-                <li><a href="homeadmin.html">Home</a></li>
-                <li><a href="../php/allProducts.php">Products</a></li>
-                <li><a href="../php/allUsers.php">Users</a></li>
-                <li><a href="../php/InsertOrder.php">Manual Order</a></li>
-                <li><a href="../php/currentOrders.php">Current Orders</a></li>
-                <li><a href="../php/checks.php">Checks</a></li>
+                <li><a href="homeadmin.php">Home</a></li>
+                <li><a href="allProducts.php">Products</a></li>
+                <li><a href="allUsers.php">Users</a></li>
+                <li><a href="displayUserOrders.php">Manual Order</a></li>
+                <li><a href="currentOrders.php">Current Orders</a></li>
+                <li><a href="checks.php">Checks</a></li>
                 
                <div class="logandreg">
-                <li><a href="../php/logout.php">Log out</a></li>
-                <li><a href="adduser.html">Add User</a></li>
+                <li><a href="logout.php">Log out</a></li>
+                <li><a href="adduser.php">Add User</a></li>
                 </div>
             </ul>
 

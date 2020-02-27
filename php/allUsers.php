@@ -1,3 +1,9 @@
+<?php session_start();
+if ($_SESSION['role']!="1"){
+   header("Location: ../html/login.html");
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,20 +16,20 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="../assets/css/home.css">
 
-<body>
-header>
-        
-        <ul class="navLinks">
-                <li><a href="homeadmin.html">Home</a></li>
-                <li><a href="../php/allProducts.php">Products</a></li>
-                <li><a href="../php/allUsers.php">Users</a></li>
-                <li><a href="../php/InsertOrder.php">Manual Order</a></li>
-                <li><a href="../php/currentOrders.php">Current Orders</a></li>
-                <li><a href="../php/checks.php">Checks</a></li>
-                <div class="logandreg">
-                    <li><a href="../php/logout.php">Log out</a></li>
+<body>        
+<ul class="navLinks">
+                <li><a href="homeadmin.php">Home</a></li>
+                <li><a href="allProducts.php">Products</a></li>
+                <li><a href="allUsers.php">Users</a></li>
+                <li><a href="displayUserOrders.php">Manual Order</a></li>
+                <li><a href="currentOrders.php">Current Orders</a></li>
+                <li><a href="checks.php">Checks</a></li>
+                
+               <div class="logandreg">
+                <li><a href="logout.php">Log out</a></li>
+                <li><a href="adduser.php">Add User</a></li>
                 </div>
-        </ul>
+            </ul>
     </header>
     <h1 class="col-5" style='margin-left:10%;'>All Users</h1>
     <script src='http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js'></script>

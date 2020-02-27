@@ -1,11 +1,7 @@
 <?php session_start();
 if ($_SESSION['role']!="1"){
-    header("Location: ../html/login.html");
-}
-if(empty($_SESSION["username"])){
-    header("Location: ../html/login.html");
-    $user=$_SESSION["username"]="";
-}else
+   header("Location: ../html/login.html");
+    }
 $user=$_SESSION["username"];
 ?>
 <!DOCTYPE html>
@@ -27,15 +23,13 @@ $user=$_SESSION["username"];
                 <li><a href="homeadmin.php">Home</a></li>
                 <li><a href="allProducts.php">Products</a></li>
                 <li><a href="allUsers.php">Users</a></li>
-                <li><a href="InsertOrder.php">Manual Order</a></li>
+                <li><a href="displayUserOrders.php">Manual Order</a></li>
                 <li><a href="currentOrders.php">Current Orders</a></li>
                 <li><a href="checks.php">Checks</a></li>
                 
                <div class="logandreg">
                 <li><a href="adduser.php">Add User</a></li>
                 <li><a href="logout.php">Log out</a></li>
-                   <!-- <li> <img width='700' height='700' src="../assets/images/avatars/<?=$image[0]['profile_pic']?>" class="userphoto"> -->
-                     <h4 class="username" class="username"><?= $user?></h4></li>
                 </div>
             </ul>
             </header>

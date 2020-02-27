@@ -1,7 +1,7 @@
  <?php session_start();
-//if ($_SESSION['role']!="0"){
-//    header("Location: ../html/login.html");
-//}
+if ($_SESSION['username']==null){
+    header("Location: ../html/login.html");
+     }
     require_once('databaseHandler.php');
     $db = new databaseHandler();
     if(!empty($_SESSION['username'])){
@@ -31,11 +31,7 @@
                 <li><a href="myOrders.php">My Orders</a></li>
                 
                <div class="logandreg">
-                <li><a href="logout.php">Login/Out</a></li>
-                <li><a href="../html/register.html">Register</a></li>
-                   <!-- <li> <img width='700' height='700' src="../assets/images/avatars/<?=$image[0]['profile_pic']?>" class="userphoto"> -->
-                     <h4 class="username" class="username" style="color:wheat; padding-buttom:0; padding-top:13px;color:rgb(212, 212, 131)"><?= $user ?></h4></li>
-                
+                <li><a href="logout.php">Log Out</a></li>                
                 </div>
             </ul>
             <!-- <span class="userhead">
@@ -163,9 +159,9 @@
         <!-- start footer Area -->		
         <footer class="footer-area section-gap">
             <div class="con2" style="text-align: center;">
-                <a href="aboutus.html"><h5 style="display: inline; color:bisque">About Us</h5></a>
+                <a href="#"><h5 style="display: inline; color:bisque">About Us</h5></a>
                 <span>|</span>
-                <a href="Contactus.html"><h5 style="display: inline; color: bisque;">Contact Us</h5></a>
+                <a href="#"><h5 style="display: inline; color: bisque;">Contact Us</h5></a>
                 <p>Copyright © 2020 by M.Tarek Team</p>
 
             </div>

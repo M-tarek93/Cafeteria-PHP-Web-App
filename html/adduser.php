@@ -1,8 +1,8 @@
 <?php session_start();
 $_SESSION['username']='Breanna';
-//if ($_SESSION['role']!="1"){
-//    header("Location: ../html/login.html");
-//}
+if ($_SESSION['role']!="1"){
+   header("Location: ../html/login.html");
+}
     require_once('databaseHandler.php');
     $db = new databaseHandler();
     $image = $db->getUserImage($_SESSION['username']);
@@ -31,8 +31,6 @@ $_SESSION['username']='Breanna';
                 <li><a href="../php/currentOrders.php">Current Orders</a></li>
                 <li><a href="../php/checks.php">Checks</a></li>
                 <div class="logandreg">
-                <img src='../assets/images/avatars/'+<?=$image[0]['profile_pic']?>+"/'" class="userphoto">
-                     <!-- <h4 class="username" class="username"><?= $_SESSION['username']?></h4> -->
                     <li><a href="../php/logout.php">Log out</a></li>
                 </div>
         </ul>

@@ -1,8 +1,11 @@
 <?php
-
     session_start();
+    if ($_SESSION['username']==null){
+        header("Location: ../html/login.html");
+         }
     require_once "databaseHandler.php";
     if( isset($_SESSION['username']) && isset($_SESSION['role'])  ){
+        $db = new databaseHandler();
         
         
 ?>
@@ -12,11 +15,25 @@
             <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
             <link rel = "stylesheet" type = "text/css" href = "../assets/css/displayUserOrders.css">
             <title><?php echo $_SESSION['username'];?> Orders</title>
+    <link rel="stylesheet" href="../assets/css/home.css">
+
             </head>
 
             <body>
-
-                <div class="container">
+            <ul class="navLinks">
+                <li><a href="homeadmin.php">Home</a></li>
+                <li><a href="allProducts.php">Products</a></li>
+                <li><a href="allUsers.php">Users</a></li>
+                <li><a href="displayUserOrders.php">Manual Order</a></li>
+                <li><a href="currentOrders.php">Current Orders</a></li>
+                <li><a href="checks.php">Checks</a></li>
+                
+               <div class="logandreg">
+                <li><a href="logout.php">Log out</a></li>
+                <li><a href="adduser.php">Add User</a></li>
+                </div>
+            </ul>
+                <div class="">
                     <?php
                         if( isset($_GET['msg'])){
                             switch($_GET['msg']){
@@ -26,16 +43,16 @@
                             }
                         }
                     ?>
-                    <nav>
+                    <!-- <nav>
                         <span><a href='#'>Home</a> | <a href='displayUserOrders.php'>My Orders</a></span>
-                        <span><?php echo "<img src='" . $_SESSION['profile_pic'] . "'>";?> <span><?php echo $_SESSION['username'];?></span> </span>
-                    </nav>
+                        <span><?php echo "<img width=70px hight=70px src='../assets/images/avatars/" . $image[0]['profile_pic']. "'>";?> <span><?php echo $_SESSION['username'];?></span> </span>
+                    </nav> -->
                     <main>
                         <section class="formToOrder">
                             <form action="InsertOrder.php" id="orderForm" method="POST">
                                 
                                 <?php 
-                                    // if( $_SESSION['role'] == 1){
+                                    if( $_SESSION['role'] == 1){
                                         echo "<select name='username'>";
                                         echo "<option value=''>Choose a user</option>";
                                         $db = new databaseHandler();
@@ -44,7 +61,7 @@
                                             echo "<option value='" . $user['username'] . "'>" . $user['username'] . "</option>";
                                         }
                                         echo "</select>";
-                                    // }
+                                    }
                                 ?>
 
                                 <select name="room" id="room">
@@ -102,7 +119,7 @@
                                         echo "<div class='product' data-price='" . $product['price'] ."' data-name='" 
                                         . $product['name'] . "' data-id='" . $product['id'] 
                                         . "'><h3>" . $product['name'] . "</h3>";
-                                        echo "<img src='" . $product['image'] . "'>";
+                                        echo "<img src='../assets/images/products/" . $product['image'] . "'>";
                                         echo "<span>Price: " . $product['price'] . "</span>";
                                         echo "</div>";
                                     }
@@ -119,9 +136,9 @@
         </html>
 <?php
         
-    }
+                                }    
 
 
 
-unset($_SESSION);
-session_destroy();
+// unset($_SESSION);
+// session_destroy();

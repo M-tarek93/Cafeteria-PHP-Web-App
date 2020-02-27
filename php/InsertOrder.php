@@ -3,7 +3,7 @@
     session_start();
 
     require_once 'databaseHandler.php';
-    // if( $_SERVER['REQUEST_METHOD'] == 'POST'){
+    if( $_SERVER['REQUEST_METHOD'] == 'POST'){
 
         if( isset( $_POST['order'] ) && !empty( $_POST['room'] ) && !empty($_POST['ext']) ){
             
@@ -37,5 +37,5 @@
             }
         }
     // } else {
-    //     echo "Should be a redirect if the request is not a post.";
-    // }
+    //     header("Location: displayUserOrders.php?msg=empty");
+    }

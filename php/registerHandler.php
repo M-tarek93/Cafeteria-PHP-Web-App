@@ -9,7 +9,12 @@
     $exten=$_POST['ext'];
     $file_name = $_FILES['file']['name'];
     $file_tmp =$_FILES['file']['tmp_name'];
+    $role=$_POST['role'];
+    if(isset($_POST['role'])){
+    $db->insertUser($userName,$password, $email,$roomNum, $exten, $_FILES['file']['name'],$role);
+    }else{
     $db->insertUser($userName,$password, $email,$roomNum, $exten, $_FILES['file']['name']);
+    }
     move_uploaded_file($file_tmp,"../assets/images/avatars/" . $file_name);
     $db->disconnectDB();
     if ($_POST['URL']=="register"){
