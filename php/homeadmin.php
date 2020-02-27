@@ -1,7 +1,13 @@
 <?php session_start();
-//if ($_SESSION['role']!="1"){
-//    header("Location: ../html/login.html");
-//}
+if ($_SESSION['role']!="1"){
+   header("Location: ../html/login.html");
+}
+
+if(empty($_SESSION["username"])){
+    header("Location: ../html/login.html");
+}else
+$user=$_SESSION["username"];
+
     require_once('databaseHandler.php');
     $db = new databaseHandler();
     $image = $db->getUserImage($_SESSION['username']);
@@ -20,19 +26,18 @@
 <body>
         <header>
             <ul class="navLinks">
-                <li><a href="homeadmin.html">Home</a></li>
-                <li><a href="../php/allProducts.php">Products</a></li>
-                <li><a href="../php/allUsers.php">Users</a></li>
-                <li><a href="../php/InsertOrder.php">Manual Order</a></li>
-                <li><a href="../php/currentOrders.php">Current Orders</a></li>
-                <li><a href="../php/checks.php">Checks</a></li>
+                <li><a href="homeadmin.php">Home</a></li>
+                <li><a href="allProducts.php">Products</a></li>
+                <li><a href="allUsers.php">Users</a></li>
+                <li><a href="InsertOrder.php">Manual Order</a></li>
+                <li><a href="currentOrders.php">Current Orders</a></li>
+                <li><a href="checks.php">Checks</a></li>
                 
                <div class="logandreg">
-                <li><a href="../php/logout.php">Log out</a></li>
-                <li><a href="adduser.html">Add User</a></li>
-                <li><a href="../php/logout.php">Log out</a></li>
+                <li><a href="logout.php">Log out</a></li>
+                <li><a href="../html/adduser.html">Add User</a></li>
                    <li> <img width='700' height='700' src="../assets/images/avatars/<?=$image[0]['profile_pic']?>" class="userphoto">
-                     <h4 class="username" class="username"><?= $_SESSION['username']?></h4></li>
+                     <h4 class="username" class="username"><?= $user ?></h4></li>
                 </div>
             </ul>
             <!-- <span class="userhead">

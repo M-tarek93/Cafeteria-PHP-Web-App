@@ -185,6 +185,12 @@
                 <span class="label">Ext.</span>
                 <input type="text" name="ext" class="ext" required>
             </div>
+            <div>
+                <span>User</span>
+                <input type="radio" name="role" value=0>
+                <span>Admin</span>
+                <input type="radio" name="role" value=1>
+            </div>
             <div class="fields" id='file'>
                 <span class="label">Profile picture</span>
                 <input type="file" name="file" value="browse" required>

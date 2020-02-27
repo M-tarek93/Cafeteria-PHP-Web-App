@@ -1,10 +1,17 @@
-<?php session_start();
+ <?php session_start();
 //if ($_SESSION['role']!="0"){
 //    header("Location: ../html/login.html");
 //}
     require_once('databaseHandler.php');
     $db = new databaseHandler();
-    $image = $db->getUserImage($_SESSION['username']);
+    if(!empty($_SESSION['username'])){
+        $image = $db->getUserImage($_SESSION['username']);
+        $user= $_SESSION['username'];
+    }else{
+        $image="";
+        $user="";
+    }
+    
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -20,15 +27,14 @@
 <body>
         <header>
             <ul class="navLinks">
-                <li><a href="homeadmin.html">Home</a></li>
-                <li><a href="../php/myOrders.php">My Orders</a></li>
+                <li><a href="homeuser.php">Home</a></li>
+                <li><a href="myOrders.php">My Orders</a></li>
                 
                <div class="logandreg">
-                <li><a href="../php/logout.php">Log out</a></li>
-                <li><a href="register.html.html">Register</a></li>
-                <li><a href="../php/logout.php">Log out</a></li>
-                   <li> <img width='700' height='700' src="../assets/images/avatars/<?=$image[0]['profile_pic']?>" class="userphoto">
-                     <h4 class="username" class="username"><?= $_SESSION['username']?></h4></li>
+                <li><a href="logout.php">Login/Out</a></li>
+                <li><a href="../html/register.html">Register</a></li>
+                   <!-- <li> <img width='700' height='700' src="../assets/images/avatars/<?=$image[0]['profile_pic']?>" class="userphoto"> -->
+                     <h4 class="username" class="username" style="color:wheat; padding-buttom:0; padding-top:13px;color:rgb(212, 212, 131)"><?= $user ?></h4></li>
                 
                 </div>
             </ul>

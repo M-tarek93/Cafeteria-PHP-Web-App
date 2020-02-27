@@ -2,6 +2,11 @@
 if ($_SESSION['role']!="1"){
     header("Location: ../html/login.html");
 }
+if(empty($_SESSION["username"])){
+    header("Location: ../html/login.html");
+    $user=$_SESSION["username"]="";
+}else
+$user=$_SESSION["username"];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -11,11 +16,29 @@ if ($_SESSION['role']!="1"){
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel='stylesheet' href='../assets/bootstrap/bootstrap.min.css' >
     <link rel="stylesheet" href="../assets/css/orders.css">
+    <link rel="stylesheet" href="../assets/css/home.css">
     <script src='http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js'></script>
 
 </head>
 
 <body>
+    <header>
+<ul class="navLinks">
+                <li><a href="homeadmin.php">Home</a></li>
+                <li><a href="allProducts.php">Products</a></li>
+                <li><a href="allUsers.php">Users</a></li>
+                <li><a href="InsertOrder.php">Manual Order</a></li>
+                <li><a href="currentOrders.php">Current Orders</a></li>
+                <li><a href="checks.php">Checks</a></li>
+                
+               <div class="logandreg">
+                <li><a href="adduser.php">Add User</a></li>
+                <li><a href="logout.php">Log out</a></li>
+                   <!-- <li> <img width='700' height='700' src="../assets/images/avatars/<?=$image[0]['profile_pic']?>" class="userphoto"> -->
+                     <h4 class="username" class="username"><?= $user?></h4></li>
+                </div>
+            </ul>
+            </header>
     <h1>Checks</h1>
     <br>
     <form method="POST" action="">

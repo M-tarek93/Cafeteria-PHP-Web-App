@@ -1,5 +1,8 @@
 <?php
 session_start();
+if(empty($_SESSION["username"])){
+    header("Location: ../html/login.html");
+}else
 $user=$_SESSION["username"];
 ?>
 <!DOCTYPE html>
@@ -10,10 +13,20 @@ $user=$_SESSION["username"];
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel='stylesheet' href='../assets/bootstrap/bootstrap.min.css' >
     <link rel="stylesheet" href="../assets/css/orders.css">
+    <link rel="stylesheet" href="../assets/css/home.css">
    </head>
 
 
 <body>
+    <header>
+    <ul class="navLinks">
+                <li><a href="homeuser.php">Home</a></li>
+                <li><a href="myOrders.php">MY Orders</a></li>
+                <div class="logandreg">
+                <li><a   href="../php/logout.php">Log Out</a></li>
+                </div>
+    </ul>
+    </header>
     <h1>My Orders</h1>
     <br>
     <form method="POST" action="">
