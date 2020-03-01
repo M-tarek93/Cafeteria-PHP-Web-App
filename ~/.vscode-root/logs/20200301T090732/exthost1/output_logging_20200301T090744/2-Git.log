@@ -223,3 +223,44 @@ Open repository: /var/www/html/cafeteria/Cafeteria-PHP-Web-App
 > git show :php/InsertOrder.php
 > git ls-files --stage -- /var/www/html/cafeteria/Cafeteria-PHP-Web-App/php/InsertOrder.php
 > git cat-file -s d2b1a550788115902a1cbc01ea84d9d2e449e451
+> git status -z -u
+> git ls-files --stage -- /var/www/html/cafeteria/Cafeteria-PHP-Web-App/php/InsertOrder.php
+> git symbolic-ref --short HEAD
+> git cat-file -s d2b1a550788115902a1cbc01ea84d9d2e449e451
+> git rev-parse Side-Bar
+> git rev-parse --symbolic-full-name Side-Bar@{u}
+> git show :php/InsertOrder.php
+> git rev-list --left-right Side-Bar...refs/remotes/origin/Side-Bar
+> git for-each-ref --format %(refname) %(objectname) --sort -committerdate
+> git remote --verbose
+> git config --get commit.template
+> git check-ignore -v -z --stdin
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git rev-parse Side-Bar
+> git rev-parse --symbolic-full-name Side-Bar@{u}
+> git rev-list --left-right Side-Bar...refs/remotes/origin/Side-Bar
+> git for-each-ref --format %(refname) %(objectname) --sort -committerdate
+> git remote --verbose
+> git config --get commit.template
+> git check-ignore -v -z --stdin
+> git checkout -q -- /var/www/html/cafeteria/Cafeteria-PHP-Web-App/~/.vscode-root/User/globalStorage/state.vscdb
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git rev-parse Side-Bar
+> git rev-parse --symbolic-full-name Side-Bar@{u}
+> git rev-list --left-right Side-Bar...refs/remotes/origin/Side-Bar
+> git for-each-ref --format %(refname) %(objectname) --sort -committerdate
+> git remote --verbose
+> git config --get commit.template
+> git ls-files --stage -- /var/www/html/cafeteria/Cafeteria-PHP-Web-App/php/InsertOrder.php
+> git cat-file -s d2b1a550788115902a1cbc01ea84d9d2e449e451
+> git show :php/InsertOrder.php
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git rev-parse Side-Bar
+> git rev-parse --symbolic-full-name Side-Bar@{u}
+> git rev-list --left-right Side-Bar...refs/remotes/origin/Side-Bar
+> git for-each-ref --format %(refname) %(objectname) --sort -committerdate
+> git remote --verbose
+> git config --get commit.template
