@@ -21,17 +21,33 @@
 
             <body>
             <ul class="navLinks">
-                <li><a href="homeadmin.php">Home</a></li>
-                <li><a href="allProducts.php">Products</a></li>
-                <li><a href="allUsers.php">Users</a></li>
-                <li><a href="displayUserOrders.php">Manual Order</a></li>
-                <li><a href="currentOrders.php">Current Orders</a></li>
-                <li><a href="checks.php">Checks</a></li>
+            <?php
+            if( $_SESSION['role'] == 1){
+                echo "
+                <li><a href='homeadmin.php'>Home</a></li>
+                <li><a href='allProducts.php'>Products</a></li>
+                <li><a href='allUsers.php'>Users</a></li>
+                <li><a href='displayUserOrders.php'>Manual Order</a></li>
+                <li><a href='currentOrders.php'>Current Orders</a></li>
+                <li><a href='checks.php'>Checks</a></li>
                 
-               <div class="logandreg">
-                <li><a href="logout.php">Log out</a></li>
-                <li><a href="adduser.php">Add User</a></li>
+               <div class='logandreg'>
+                <li><a href='logout.php'>Log out</a></li>
+                <li><a href='adduser.php'>Add User</a></li>
                 </div>
+                ";
+            }else{
+                echo "
+                <li><a href='homeuser.php'>Home</a></li>
+                <li><a href='displayUserOrders.php'>Make Order</a></li>
+                <li><a href='myOrders.php'>My Orders</a></li>
+                
+               <div class='logandreg'>
+                <li><a href='logout.php'>Log Out</a></li>                
+                </div>
+                ";
+            }
+                ?>
             </ul>
                 <div class="">
                     <?php
@@ -43,10 +59,7 @@
                             }
                         }
                     ?>
-                    <!-- <nav>
-                        <span><a href='#'>Home</a> | <a href='displayUserOrders.php'>My Orders</a></span>
-                        <span><?php echo "<img width=70px hight=70px src='../assets/images/avatars/" . $image[0]['profile_pic']. "'>";?> <span><?php echo $_SESSION['username'];?></span> </span>
-                    </nav> -->
+                
                     <main>
                         <section class="formToOrder">
                             <form action="InsertOrder.php" id="orderForm" method="POST">
@@ -102,7 +115,7 @@
 
                                     foreach( $orders as $order ){
                                         echo "<div class='order'><h3>" . $order['name'] . "</h3>";
-                                        echo "<img src='" . $order['image'] . "'>";
+                                        echo "<img src='../assets/images/products/" . $order['image'] . "'>";
                                         echo "<span>" . $order['date'] . "</span>";
                                         echo "</div>";
                                     }

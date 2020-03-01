@@ -158,7 +158,7 @@
 
         public function insertOrder($notes, $room, $ext, $totalPrice, $username){
             $this->connectDB();
-            $sql = "INSERT INTO orders(Notes, date, room, ext, total_price, status, username) VALUES( ?, CURRENT_DATE(), ?, ?, ?, 'processing', ?);";
+            $sql = "INSERT INTO orders(Notes, date, room, ext, total_price, status, username) VALUES( ?, CURRENT_DATE(), ?, ?, ?, 1 , ?);";
             try{
                 $stmt = $this->conn->prepare($sql);
                 $stmt->bindValue(1,$notes);

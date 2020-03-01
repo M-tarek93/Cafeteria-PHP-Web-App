@@ -1,0 +1,225 @@
+Looking for git in: git
+Using git 2.23.0 from git
+> git rev-parse --show-toplevel
+> git rev-parse --git-dir
+Open repository: /var/www/html/cafeteria/Cafeteria-PHP-Web-App
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git rev-parse Side-Bar
+> git rev-parse --symbolic-full-name Side-Bar@{u}
+> git rev-list --left-right Side-Bar...refs/remotes/origin/Side-Bar
+> git for-each-ref --format %(refname) %(objectname) --sort -committerdate
+> git remote --verbose
+> git config --get commit.template
+> git check-ignore -v -z --stdin
+> git check-ignore -v -z --stdin
+> git check-ignore -v -z --stdin
+> git show :php/InsertOrder.php
+> git ls-files --stage -- /var/www/html/cafeteria/Cafeteria-PHP-Web-App/php/InsertOrder.php
+> git cat-file -s d2b1a550788115902a1cbc01ea84d9d2e449e451
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git rev-parse Side-Bar
+> git rev-parse --symbolic-full-name Side-Bar@{u}
+> git rev-list --left-right Side-Bar...refs/remotes/origin/Side-Bar
+> git for-each-ref --format %(refname) %(objectname) --sort -committerdate
+> git remote --verbose
+> git config --get commit.template
+> git show :php/getUserOrders.php
+> git ls-files --stage -- /var/www/html/cafeteria/Cafeteria-PHP-Web-App/php/getUserOrders.php
+> git cat-file -s dd4332aaf2bfe02b825d97730c5b952ad6e099c2
+> git show :php/displayUserOrders.php
+> git ls-files --stage -- /var/www/html/cafeteria/Cafeteria-PHP-Web-App/php/displayUserOrders.php
+> git cat-file -s d5ad957132bad56cf95100c03d701ba782885382
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git rev-parse Side-Bar
+> git rev-parse --symbolic-full-name Side-Bar@{u}
+> git rev-list --left-right Side-Bar...refs/remotes/origin/Side-Bar
+> git for-each-ref --format %(refname) %(objectname) --sort -committerdate
+> git remote --verbose
+> git config --get commit.template
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git rev-parse Side-Bar
+> git rev-parse --symbolic-full-name Side-Bar@{u}
+> git rev-list --left-right Side-Bar...refs/remotes/origin/Side-Bar
+> git for-each-ref --format %(refname) %(objectname) --sort -committerdate
+> git remote --verbose
+> git config --get commit.template
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git rev-parse Side-Bar
+> git rev-parse --symbolic-full-name Side-Bar@{u}
+> git rev-list --left-right Side-Bar...refs/remotes/origin/Side-Bar
+> git for-each-ref --format %(refname) %(objectname) --sort -committerdate
+> git remote --verbose
+> git config --get commit.template
+> git show :php/homeuser.php
+> git ls-files --stage -- /var/www/html/cafeteria/Cafeteria-PHP-Web-App/php/homeuser.php
+> git cat-file -s 0d3c6713f8ca63bb32fa5bff20ffa6b169b0bb80
+> git show :php/displayUserOrders.php
+> git ls-files --stage -- /var/www/html/cafeteria/Cafeteria-PHP-Web-App/php/displayUserOrders.php
+> git cat-file -s d5ad957132bad56cf95100c03d701ba782885382
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git rev-parse Side-Bar
+> git rev-parse --symbolic-full-name Side-Bar@{u}
+> git rev-list --left-right Side-Bar...refs/remotes/origin/Side-Bar
+> git for-each-ref --format %(refname) %(objectname) --sort -committerdate
+> git remote --verbose
+> git config --get commit.template
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git rev-parse Side-Bar
+> git rev-parse --symbolic-full-name Side-Bar@{u}
+> git rev-list --left-right Side-Bar...refs/remotes/origin/Side-Bar
+> git for-each-ref --format %(refname) %(objectname) --sort -committerdate
+> git remote --verbose
+> git config --get commit.template
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git rev-parse Side-Bar
+> git rev-parse --symbolic-full-name Side-Bar@{u}
+> git rev-list --left-right Side-Bar...refs/remotes/origin/Side-Bar
+> git for-each-ref --format %(refname) %(objectname) --sort -committerdate
+> git remote --verbose
+> git config --get commit.template
+> git show :php/homeuser.php
+> git ls-files --stage -- /var/www/html/cafeteria/Cafeteria-PHP-Web-App/php/homeuser.php
+> git cat-file -s 0d3c6713f8ca63bb32fa5bff20ffa6b169b0bb80
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git rev-parse Side-Bar
+> git rev-parse --symbolic-full-name Side-Bar@{u}
+> git rev-list --left-right Side-Bar...refs/remotes/origin/Side-Bar
+> git for-each-ref --format %(refname) %(objectname) --sort -committerdate
+> git remote --verbose
+> git config --get commit.template
+> git show :php/myOrders.php
+> git ls-files --stage -- /var/www/html/cafeteria/Cafeteria-PHP-Web-App/php/myOrders.php
+> git cat-file -s 9e0a5d4f6c9fe128abcdae0202d9e00c0a078670
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git rev-parse Side-Bar
+> git rev-parse --symbolic-full-name Side-Bar@{u}
+> git rev-list --left-right Side-Bar...refs/remotes/origin/Side-Bar
+> git for-each-ref --format %(refname) %(objectname) --sort -committerdate
+> git remote --verbose
+> git config --get commit.template
+> git show :php/displayUserOrders.php
+> git ls-files --stage -- /var/www/html/cafeteria/Cafeteria-PHP-Web-App/php/displayUserOrders.php
+> git cat-file -s d5ad957132bad56cf95100c03d701ba782885382
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git rev-parse Side-Bar
+> git rev-parse --symbolic-full-name Side-Bar@{u}
+> git rev-list --left-right Side-Bar...refs/remotes/origin/Side-Bar
+> git for-each-ref --format %(refname) %(objectname) --sort -committerdate
+> git remote --verbose
+> git config --get commit.template
+> git check-ignore -v -z --stdin
+> git show :JS/displayUserOrders.js
+> git ls-files --stage -- /var/www/html/cafeteria/Cafeteria-PHP-Web-App/JS/displayUserOrders.js
+> git cat-file -s 397c4e63303f042711d5ef4a360b84aa7da71353
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git rev-parse Side-Bar
+> git rev-parse --symbolic-full-name Side-Bar@{u}
+> git rev-list --left-right Side-Bar...refs/remotes/origin/Side-Bar
+> git for-each-ref --format %(refname) %(objectname) --sort -committerdate
+> git remote --verbose
+> git config --get commit.template
+> git show :php/displayUserOrders.php
+> git ls-files --stage -- /var/www/html/cafeteria/Cafeteria-PHP-Web-App/php/displayUserOrders.php
+> git cat-file -s d5ad957132bad56cf95100c03d701ba782885382
+> git show :php/InsertOrder.php
+> git ls-files --stage -- /var/www/html/cafeteria/Cafeteria-PHP-Web-App/php/InsertOrder.php
+> git cat-file -s d2b1a550788115902a1cbc01ea84d9d2e449e451
+> git show :php/databaseHandler.php
+> git ls-files --stage -- /var/www/html/cafeteria/Cafeteria-PHP-Web-App/php/databaseHandler.php
+> git cat-file -s 1331dbfc8b158433f6d8b33a0609e459c8eb8e57
+> git show :php/displayUserOrders.php
+> git ls-files --stage -- /var/www/html/cafeteria/Cafeteria-PHP-Web-App/php/displayUserOrders.php
+> git cat-file -s d5ad957132bad56cf95100c03d701ba782885382
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git rev-parse Side-Bar
+> git rev-parse --symbolic-full-name Side-Bar@{u}
+> git rev-list --left-right Side-Bar...refs/remotes/origin/Side-Bar
+> git for-each-ref --format %(refname) %(objectname) --sort -committerdate
+> git remote --verbose
+> git config --get commit.template
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git rev-parse Side-Bar
+> git rev-parse --symbolic-full-name Side-Bar@{u}
+> git rev-list --left-right Side-Bar...refs/remotes/origin/Side-Bar
+> git for-each-ref --format %(refname) %(objectname) --sort -committerdate
+> git remote --verbose
+> git config --get commit.template
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git rev-parse Side-Bar
+> git rev-parse --symbolic-full-name Side-Bar@{u}
+> git rev-list --left-right Side-Bar...refs/remotes/origin/Side-Bar
+> git for-each-ref --format %(refname) %(objectname) --sort -committerdate
+> git remote --verbose
+> git config --get commit.template
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git rev-parse Side-Bar
+> git rev-parse --symbolic-full-name Side-Bar@{u}
+> git rev-list --left-right Side-Bar...refs/remotes/origin/Side-Bar
+> git for-each-ref --format %(refname) %(objectname) --sort -committerdate
+> git remote --verbose
+> git config --get commit.template
+> git show :php/InsertOrder.php
+> git ls-files --stage -- /var/www/html/cafeteria/Cafeteria-PHP-Web-App/php/InsertOrder.php
+> git cat-file -s d2b1a550788115902a1cbc01ea84d9d2e449e451
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git rev-parse Side-Bar
+> git rev-parse --symbolic-full-name Side-Bar@{u}
+> git rev-list --left-right Side-Bar...refs/remotes/origin/Side-Bar
+> git for-each-ref --format %(refname) %(objectname) --sort -committerdate
+> git remote --verbose
+> git config --get commit.template
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git rev-parse Side-Bar
+> git rev-parse --symbolic-full-name Side-Bar@{u}
+> git rev-list --left-right Side-Bar...refs/remotes/origin/Side-Bar
+> git for-each-ref --format %(refname) %(objectname) --sort -committerdate
+> git remote --verbose
+> git config --get commit.template
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git rev-parse Side-Bar
+> git rev-parse --symbolic-full-name Side-Bar@{u}
+> git rev-list --left-right Side-Bar...refs/remotes/origin/Side-Bar
+> git for-each-ref --format %(refname) %(objectname) --sort -committerdate
+> git remote --verbose
+> git config --get commit.template
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git rev-parse Side-Bar
+> git rev-parse --symbolic-full-name Side-Bar@{u}
+> git rev-list --left-right Side-Bar...refs/remotes/origin/Side-Bar
+> git for-each-ref --format %(refname) %(objectname) --sort -committerdate
+> git remote --verbose
+> git config --get commit.template
+> git show :php/databaseHandler.php
+> git ls-files --stage -- /var/www/html/cafeteria/Cafeteria-PHP-Web-App/php/databaseHandler.php
+> git cat-file -s 1331dbfc8b158433f6d8b33a0609e459c8eb8e57
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git rev-parse Side-Bar
+> git rev-parse --symbolic-full-name Side-Bar@{u}
+> git rev-list --left-right Side-Bar...refs/remotes/origin/Side-Bar
+> git for-each-ref --format %(refname) %(objectname) --sort -committerdate
+> git remote --verbose
+> git config --get commit.template
+> git show :php/InsertOrder.php
+> git ls-files --stage -- /var/www/html/cafeteria/Cafeteria-PHP-Web-App/php/InsertOrder.php
+> git cat-file -s d2b1a550788115902a1cbc01ea84d9d2e449e451
