@@ -1,7 +1,5 @@
  <?php session_start();
-if ($_SESSION['username']==null){
-    header("Location: ../html/login.html");
-     }
+
     require_once('databaseHandler.php');
     $db = new databaseHandler();
     if(!empty($_SESSION['username'])){
@@ -29,10 +27,18 @@ if ($_SESSION['username']==null){
             <ul class="navLinks">
                 <li><a href="homeuser.php">Home</a></li>
                 <li><a href="myOrders.php">My Orders</a></li>
-                
-               <div class="logandreg">
-                <li><a href="logout.php">Log Out</a></li>                
-                </div>
+            
+               <?php if(!empty($_SESSION['username']))
+                echo"   
+               <div class='logandreg'>
+                <li><a href='logout.php'>Log Out</a></li>
+                </div>" ?>
+                <?php if(empty($_SESSION['username']))
+                echo"   
+               <div class='logandreg'>
+                <li><a href='logout.php'>Login</a></li>
+                <li><a href='../html/register.html'>Register</a></li>                
+                </div>" ?>
             </ul>
             <!-- <span class="userhead">
                 <img src="../images/user.png" class="userphoto">
@@ -170,3 +176,4 @@ if ($_SESSION['username']==null){
 
        
 </body>
+</html>
