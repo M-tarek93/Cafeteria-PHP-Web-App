@@ -27,6 +27,7 @@
             <ul class="navLinks">
                 <li><a href="homeuser.php">Home</a></li>
                 <li><a href="myOrders.php">My Orders</a></li>
+                <li><a href='displayUserOrders.php'>Make Order</a></li>
             
                <?php if(!empty($_SESSION['username']))
                 echo"   

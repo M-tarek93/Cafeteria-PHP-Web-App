@@ -20,10 +20,12 @@ $user=$_SESSION["username"];
 <body>
     <header>
     <ul class="navLinks">
-                <li><a href="homeuser.php">Home</a></li>
-                <li><a href="myOrders.php">My Orders</a></li>
-                <div class="logandreg">
-                <li><a   href="../php/logout.php">Log Out</a></li>
+    <li><a href='homeuser.php'>Home</a></li>
+                <li><a href='displayUserOrders.php'>Make Order</a></li>
+                <li><a href='myOrders.php'>My Orders</a></li>
+                
+               <div class='logandreg'>
+                <li><a href='logout.php'>Log Out</a></li>                
                 </div>
     </ul>
     </header>

@@ -66,7 +66,7 @@ function totalAmountAdded(){
     if(this.value <= 0){  // removing the input if it reaches 0 
         let parent = this.parentElement;
         inputTotal.value = ( parseInt(inputTotal.value ) - ( parseInt(this.dataset.price) * (lastvalue - currentvalue) ) );
-        console.log(this.dataset.name); 
+        // console.log(this.dataset.name); 
         parent.removeChild(document.querySelector("input[data-name='" + this.dataset.name + "']"));
         parent.removeChild(document.querySelector("input[data-name='" + this.dataset.name + "']"));
         parent.removeChild(document.querySelector("label[data-name='" + this.dataset.name + "']"));
